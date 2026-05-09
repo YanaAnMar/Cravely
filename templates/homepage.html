@@ -1,1 +1,24 @@
-hello world
+{% load static %}
+
+<!DOCTYPE html>
+
+<head>
+    <title> Cravely </title>
+
+    <link rel = "stylesheet" href = "{% static 'homepage.css' %}"> </link>
+
+    <style>
+        .main-div{
+            background-color: lightpink;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <div class = "main-div">
+        <img src = "{% static 'assets/cravely_logo.png' %}" height="90">
+    </div>
+
+</body>

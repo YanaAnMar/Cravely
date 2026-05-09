@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<head>
+    <title> Cravely </title>
+
+    <link rel = "stylesheet" href = "{% static 'homepage.css' %}"> </link>
+
+</head>
+
+<body>
+    <button class = "button"> 
+        Click me 
+    </button>
+
+    <a href = "{% url 'profile' %}">
+        click
+    </a>
+
+    <img src = "{% static 'assets/cravely_logo.png' %}" height="100">
+
+</body>
