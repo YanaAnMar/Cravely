@@ -3,22 +3,45 @@
 <!DOCTYPE html>
 
 <head>
-    <title> Cravely </title>
-
+    
+    <title>Cravely</title>
     <link rel = "stylesheet" href = "{% static 'homepage.css' %}"> </link>
-
-    <style>
-        .main-div{
-            background-color: lightpink;
-        }
-        
-    </style>
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class = "main-div">
-        <img src = "{% static 'assets/cravely_logo.png' %}" height="90">
+    <div class="header">
+       <div class="header_top">
+
+        <img class="small_logo" src="{% static 'assets/cravely_logo.png' %}">
+
+        <div class="header_right">
+
+        <input type="text" class="search_bar">
+
+        <img class="profile_icon" src="{% static 'assets/profile_icon.png' %}">
+
     </div>
+
+        </div>
+
+        <div class="header_bottom">
+
+        <p>Breakfast</p>
+        <p>Lunch</p>
+        <p>Dinner</p>
+        <p>Quick meals</p>
+
+        </div>
+       </div>
+
+       <div class="main">
+        <div class="container">
+         <img class="logo" src="{% static 'assets/cravely_logo.png' %}">
+            <p class="good_text">
+            good.
+            </p>
+        </div>
+       </div>
 
 </body>
