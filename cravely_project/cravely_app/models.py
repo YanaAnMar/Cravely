@@ -18,12 +18,13 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField(help_text="Summary of dish")
     cooking_time = models.IntegerField()
     portions = models.IntegerField(default=1)
     likes = models.IntegerField(default=0)
     ingredients = models.ManyToManyField(Ingredient)
     tags = models.ManyToManyField(Tag, blank=True)
+    steps = models.TextField(default="", help_text="Seperate steps with |")
     favorited_by = models.ManyToManyField(User, blank=True, related_name="favorite_recipes")
 
     def __str__(self):

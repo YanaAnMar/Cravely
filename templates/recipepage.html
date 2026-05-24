@@ -4,7 +4,7 @@
 <html>
     <head>
         
-        <title>{{recipe.title}} | Cravely</title>
+        <title>{{ recipe.title }} | Cravely</title>
         <link rel = "stylesheet" href = "{% static 'recipepage.css' %}">
         
 
@@ -13,6 +13,11 @@
     <body>
         {% comment %} {% include 'header.html' %} {% endcomment %}
         <div class="recipe-title-section">
+
+            <div class="recipe-title">
+                {{ recipe.title }}
+            </div>
+
 
             <div class="recipe-tags-container">
                 {% for tag in recipe.tags.all %}
@@ -24,13 +29,24 @@
                         No tags for this recipe 
                     </span>
                 {% endfor %}
-
             </div>
 
-
+            <p> 
+                Total time: {{ recipe.cooking_time }} minutes
+            </p>
 
         </div>
         
+
+        <h2>Directions</h2>
+        <ol class="recipe-steps">
+            {% for step in steps_list %}
+                {% if step.strip %}
+                    <li>{{ step.strip }}</li>
+                {% endif %}
+            {% endfor %}
+        </ol>
+
             
 
 

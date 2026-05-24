@@ -11,8 +11,11 @@ def profile(request):
 
 def recipepage(request, recipe_id):
     single_recipe = get_object_or_404(Recipe, id=recipe_id)
-
-    return render(request, '../templates/recipepage.html')
+    steps_list = single_recipe.steps.split('|')
+    return render(request, 'recipepage.html', {
+        'recipe': single_recipe,
+        'steps_list': steps_list
+    })
 
 def saved_recipes(request):
     return render(request, '../templates/saved_recipes.html')
