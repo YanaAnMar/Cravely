@@ -7,3 +7,6 @@ def homepage(request):
 
 def profile(request):
     return render(request, '../templates/profile.html')
+
+def recipepage(request):
+    return render(request, '../templates/recipepage.html')

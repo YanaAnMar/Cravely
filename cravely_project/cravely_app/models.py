@@ -20,6 +20,7 @@ class Recipe(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     cooking_time = models.IntegerField()
+    portions = models.IntegerField(default=1)
     likes = models.IntegerField(default=0)
     ingredients = models.ManyToManyField(Ingredient)
     tags = models.ManyToManyField(Tag, blank=True)
