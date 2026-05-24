@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Recipe
 
 # Create your views here.
 
@@ -8,5 +9,7 @@ def homepage(request):
 def profile(request):
     return render(request, '../templates/profile.html')
 
-def recipepage(request):
+def recipepage(request, recipe_id):
+    single_recipe = get_object_or_404(Recipe, id=recipe_id)
+
     return render(request, '../templates/recipepage.html')

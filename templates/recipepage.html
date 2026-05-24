@@ -1,17 +1,39 @@
 {% load static %}
 
 <!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>{{recipe.title}} | Cravely</title>
+        <link rel = "stylesheet" href = "{% static 'recipepage.css' %}">
+        
 
-<head>
-    
-    <title>Cravely</title>
-    <link rel = "stylesheet" href = "{% static 'recipepage.css' %}"> </link>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
 
-</head>
+    <body>
+        {% comment %} {% include 'header.html' %} {% endcomment %}
+        <div class="recipe-title-section">
 
-<body>
-    
-    
+            <div class="recipe-tags-container">
+                {% for tag in recipe.tags.all %}
+                    <span class="recipe-tag">
+                        {{ tag.name }}
+                    </span>
+                {% empty %}
+                    <span> 
+                        No tags for this recipe 
+                    </span>
+                {% endfor %}
 
-</body>
+            </div>
+
+
+
+        </div>
+        
+            
+
+
+    </body>
+
+</html>
