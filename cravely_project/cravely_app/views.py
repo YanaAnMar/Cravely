@@ -10,3 +10,6 @@ def profile(request):
 
 def recipepage(request):
     return render(request, '../templates/recipepage.html')
+
+def saved_recipes(request):
+    return render(request, '../templates/saved_recipes.html')

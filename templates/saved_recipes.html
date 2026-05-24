@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saved Recipes - Cravely</title>
+    <link rel="stylesheet" href="{% static 'homepage.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <div class="header_top">
+            <a href="{% url 'homepage' %}">
+                <img class="small_logo" src="{% static 'assets/cravely_logo.png' %}">
+            </a>
+            <div class="header_right">
+                <a href="{% url 'saved_recipes' %}">
+                    <img class="profile_icon" src="{% static 'assets/save_icon.png' %}">
+                </a>
+                <a href="{% url 'profile' %}">
+                    <img class="profile_icon" src="{% static 'assets/profile_icon.png' %}">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <h1>Saved Recipes</h1>
+        <p>Your saved recipes will appear here.</p>
+    </div>
+</body>
+</html>

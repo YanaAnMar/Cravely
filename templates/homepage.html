@@ -1,55 +1,255 @@
 {% load static %}
 
 <!DOCTYPE html>
-
+<html>
 <head>
-    
     <title>Cravely</title>
-    <link rel = "stylesheet" href = "{% static 'homepage.css' %}"> </link>
+    <link rel="stylesheet" href="{% static 'homepage.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="header">
-       <div class="header_top">
-
-        <img class="small_logo" src="{% static 'assets/cravely_logo.png' %}">
-
-        <div class="header_right">
-
-        <input type="text" class="search_bar">
-
-        <img class="profile_icon" src="{% static 'assets/profile_icon.png' %}">
-
-    </div>
-
+        <div class="header_top">
+            <img class="small_logo" src="{% static 'assets/cravely_logo.png' %}">
+            <div class="header_right">
+                <form action="/lookup/" method="GET">
+                    <input type="text" class="search_bar" name="ingredients" placeholder="Search by ingredients...">
+                </form>
+                <a href="{% url 'saved_recipes' %}">
+                    <img class="save_icon" src="{% static 'assets/save_icon.png' %}">
+                </a>
+                <a href="{% url 'profile' %}">
+                    <img class="profile_icon" src="{% static 'assets/profile_icon.png' %}">
+                </a>
+            </div>
         </div>
 
         <div class="header_bottom">
-
-        <p>Breakfast</p>
-        <p>Lunch</p>
-        <p>Dinner</p>
-        <p>Quick meals</p>
-
+            <p>Breakfast</p>
+            <p>Lunch</p>
+            <p>Dinner</p>
+            <p>Quick meals</p>
         </div>
-       </div>
+    </div>
 
-       <div class="main">
+    <div class="main">
         <div class="container">
-         <img class="logo" src="{% static 'assets/cravely_logo.png' %}">
-            <p class="good_text">
-            good.
-            </p>
+            <img class="logo" src="{% static 'assets/cravely_logo.png' %}">
+            <p class="good_text">good.</p>
         </div>
 
         <a href="{% url 'recipepage' %}" 
-        style="position:fixed;
-        bottom:24px;
-        right:24px;
-        background:#ff6b35;
-        font-size:14px;">Recipe Page →</a>
+           style="position:fixed; bottom:24px; right:24px; background:#ff6b35; font-size:14px; text-decoration:none; padding:10px; color:white; border-radius:5px;">
+           Recipe Page →
+        </a>
+    </div>
 
-       </div>
+    <div class="take_a_look">
+        <h2 class="take_a_look_title">Take a look at...</h2>
 
+        <div class="carousel_section">
+            <p class="craving_text">What we're craving</p>
+            <div class="carousel">
+                <button id="prev_btn_1" class="carousel_btn" onclick="go(1, -1)">&#10094;</button>
+                <div class="carousel_window">
+                    <div id="track_1" class="carousel_track">
+                        <div class="carousel_card card_1">
+                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                            <p>Creamy Lemon Chicken</p>
+                        </div>
+                        <div class="carousel_card card_1">
+                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                            <p>The Best Chewy Chocolate Chip Cookies</p>
+                        </div>
+                        <div class="carousel_card card_1">
+                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                            <p>Honey-Pepper Spicy Wings</p>
+                        </div>
+                        <div class="carousel_card card_1">
+                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                            <p>Creamy Lemon Chicken</p>
+                        </div>
+                        <div class="carousel_card card_1">
+                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                            <p>The Best Chewy Chocolate Chip Cookies</p>
+                        </div>
+                        <div class="carousel_card card_1">
+                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                            <p>Honey-Pepper Spicy Wings</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel_btn" onclick="go(1, 1)">&#10095;</button>
+            </div>
+        </div>
+
+        <hr class="section_divider">
+
+        <div class="carousel_section">
+            <p class="craving_text">New and hot on the plate</p>
+            <div class="carousel">
+                <button id="prev_btn_2" class="carousel_btn" onclick="go(2, -1)">&#10094;</button>
+                <div class="carousel_window">
+                    <div id="track_2" class="carousel_track">
+                        <div class="carousel_card card_2">
+                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                            <p>Creamy Lemon Chicken</p>
+                        </div>
+                        <div class="carousel_card card_2">
+                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                            <p>The Best Chewy Chocolate Chip Cookies</p>
+                        </div>
+                        <div class="carousel_card card_2">
+                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                            <p>Honey-Pepper Spicy Wings</p>
+                        </div>
+                        <div class="carousel_card card_2">
+                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                            <p>Creamy Lemon Chicken</p>
+                        </div>
+                        <div class="carousel_card card_2">
+                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                            <p>The Best Chewy Chocolate Chip Cookies</p>
+                        </div>
+                        <div class="carousel_card card_2">
+                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                            <p>Honey-Pepper Spicy Wings</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel_btn" onclick="go(2, 1)">&#10095;</button>
+            </div>
+        </div>
+
+        <hr class="section_divider">
+
+        <div class="carousel_section">
+            <p class="craving_text">Sweet tooth rescue</p>
+            <div class="carousel">
+                <button id="prev_btn_3" class="carousel_btn" onclick="go(3, -1)">&#10094;</button>
+                <div class="carousel_window">
+                    <div id="track_3" class="carousel_track">
+                        <div class="carousel_card card_3">
+                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                            <p>Creamy Lemon Chicken</p>
+                        </div>
+                        <div class="carousel_card card_3">
+                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                            <p>The Best Chewy Chocolate Chip Cookies</p>
+                        </div>
+                        <div class="carousel_card card_3">
+                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                            <p>Honey-Pepper Spicy Wings</p>
+                        </div>
+                        <div class="carousel_card card_3">
+                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                            <p>Creamy Lemon Chicken</p>
+                        </div>
+                        <div class="carousel_card card_3">
+                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                            <p>The Best Chewy Chocolate Chip Cookies</p>
+                        </div>
+                        <div class="carousel_card card_3">
+                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                            <p>Honey-Pepper Spicy Wings</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel_btn" onclick="go(3, 1)">&#10095;</button>
+            </div>
+        </div>
+
+        <hr class="section_divider">
+
+        <div class="carousel_section">
+            <p class="craving_text">Last minute meals</p>
+            <div class="carousel">
+                <button id="prev_btn_4" class="carousel_btn" onclick="go(4, -1)">&#10094;</button>
+                <div class="carousel_window">
+                    <div id="track_4" class="carousel_track">
+                        <div class="carousel_card card_4">
+                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                            <p>Creamy Lemon Chicken</p>
+                        </div>
+                        <div class="carousel_card card_4">
+                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                            <p>The Best Chewy Chocolate Chip Cookies</p>
+                        </div>
+                        <div class="carousel_card card_4">
+                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                            <p>Honey-Pepper Spicy Wings</p>
+                        </div>
+                        <div class="carousel_card card_4">
+                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                            <p>Creamy Lemon Chicken</p>
+                        </div>
+                        <div class="carousel_card card_4">
+                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                            <p>The Best Chewy Chocolate Chip Cookies</p>
+                        </div>
+                        <div class="carousel_card card_4">
+                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                            <p>Honey-Pepper Spicy Wings</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel_btn" onclick="go(4, 1)">&#10095;</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var step = 226; 
+        var centerOffset = 250; 
+
+        var positions = { 1: 0, 2: 0, 3: 0, 4: 0 };
+
+        for (var id = 1; id <= 4; id++) {
+            var cards = document.querySelectorAll('.card_' + id);
+            var currentTrack = document.getElementById('track_' + id);
+            var prevBtn = document.getElementById('prev_btn_' + id);
+
+            if (cards.length > 0) {
+                cards[0].classList.add('active');
+                currentTrack.style.transform = 'translateX(' + centerOffset + 'px)';
+                prevBtn.style.display = 'none';
+            }
+        }
+
+        function go(carouselId, dir) {
+            var cards = document.querySelectorAll('.card_' + carouselId);
+            var track = document.getElementById('track_' + carouselId);
+            var prevBtn = document.getElementById('prev_btn_' + carouselId);
+            var currentPos = positions[carouselId];
+
+            cards[currentPos].classList.remove('active');
+            var next = currentPos + dir;
+            var wrapping = next < 0 || next > cards.length - 1;
+
+            if (wrapping) {
+                currentPos = next < 0 ? cards.length - 1 : 0;
+                track.style.transition = 'none';
+                var currentOffset = centerOffset - (currentPos * step);
+                track.style.transform = 'translateX(' + currentOffset + 'px)';
+                track.offsetHeight; 
+                track.style.transition = 'transform 0.4s ease';
+            } else {
+                currentPos = next;
+                var currentOffset = centerOffset - (currentPos * step);
+                track.style.transform = 'translateX(' + currentOffset + 'px)';
+            }
+
+            cards[currentPos].classList.add('active');
+            positions[carouselId] = currentPos;
+
+            if (currentPos === 0) {
+                prevBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'block';
+            }
+        }
+    </script>
 </body>
+</html>
