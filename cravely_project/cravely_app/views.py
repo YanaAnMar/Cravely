@@ -13,3 +13,6 @@ def recipepage(request):
 
 def saved_recipes(request):
     return render(request, '../templates/saved_recipes.html')
+
+def add_recipe(request):
+    return render(request, '../templates/add_recipe.html')

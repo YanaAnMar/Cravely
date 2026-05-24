@@ -132,14 +132,13 @@
     flex: 1;
     height: 2px;
     background-color: rgb(162, 168, 73);
-    width: 300px;
 }
 
 .section_divider {
     border: none;
     height: 2px;
     background-color: rgb(162, 168, 73);
-    width: 100%;
+    width: 80%;
     margin: 40px auto;
 }
 
@@ -223,4 +222,19 @@
 
 .carousel_btn:hover {
     background-color: rgb(219, 225, 156);
+}
+
+.add_button {
+   position: fixed;
+   bottom: 4vh;
+   right: 4vh;
+   font-size: 30px;
+   padding-top: 25px;
+   padding-bottom: 25px;
+   padding-left: 30px;
+   padding-right: 30px;
+   background:  rgb(162, 168, 73);
+   color: white;
+   text-decoration: none;
+   border-radius: 10px;
 }
