@@ -202,8 +202,90 @@
                 <button class="carousel_btn" onclick="go(4, 1)">&#10095;</button>
             </div>
         </div>
-
     </div>
+    
+    <div class="browse_all_section">
+        <h2 class="browse_all_title">Browse all</h2>
+        
+        <div id="browse_grid" class="browse_grid collapsed">
+
+            <div class="collapsed_view">
+                <div class="row_1_flex">
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                        <p>Creamy Lemon Chicken</p>
+                    </div>
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                        <p>The Best Chewy Chocolate Chip Cookies</p>
+                    </div>
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                        <p>Honey-Pepper Spicy Wings</p>
+                    </div>
+                </div>
+
+                <div class="row_2_flex">
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                        <p>Creamy Lemon Chicken</p>
+                    </div>
+
+                    <button class="arrow_down_btn static_arrow" onclick="toggleBrowse()">
+                        &#10095;
+                    </button>
+
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                        <p>The Best Chewy Chocolate Chip Cookies</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expanded_view">
+                <div class="browse_four_grid">
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                        <p>Creamy Lemon Chicken</p>
+                    </div>
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                        <p>The Best Chewy Chocolate Chip Cookies</p>
+                    </div>
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                        <p>Honey-Pepper Spicy Wings</p>
+                    </div>
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                        <p>Creamy Lemon Chicken</p>
+                    </div>
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                        <p>The Best Chewy Chocolate Chip Cookies</p>
+                    </div>
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
+                        <p>Honey-Pepper Spicy Wings</p>
+                    </div>
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
+                        <p>Creamy Lemon Chicken</p>
+                    </div>
+                    <div class="carousel_card browse_card">
+                        <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
+                        <p>The Best Chewy Chocolate Chip Cookies</p>
+                    </div>
+                </div>
+
+                <button class="arrow_down_btn bottom_arrow" onclick="toggleBrowse()">
+                    &#10095;
+                </button>
+            </div>
+
+        </div>
+    </div>
+
     <script>
         var logoEl = document.querySelector('.logo');
         var goodTextEl = document.querySelector('.good_text');

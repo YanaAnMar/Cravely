@@ -261,3 +261,133 @@
    text-decoration: none;
    border-radius: 10px;
 }
+
+.browse_all_section {
+    background-color: rgb(255, 252, 240);
+    text-align: center;
+    padding: 60px 40px;
+}
+
+.browse_all_title {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-size: 2.5rem;
+    color: rgb(68, 12, 13);
+    margin-top: 0;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.browse_all_title::before,
+.browse_all_title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background-color: rgb(162, 168, 73);
+}
+
+.browse_grid {
+    max-width: 960px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.browse_card {
+    transform: scale(1) !important;
+    margin: 0;
+}
+
+.browse_grid.collapsed .collapsed_view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.browse_grid.collapsed .expanded_view {
+    display: none;
+}
+
+.row_1_flex {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.row_2_flex {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    align-items: center;
+    width: 100%;
+}
+
+.arrow_down_btn.static_arrow {
+    transform: rotate(90deg);
+    flex-shrink: 0;
+    position: relative;
+    top: 70px;
+    z-index: 5;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.browse_grid.expanded .collapsed_view {
+    display: none;
+}
+
+.browse_grid.expanded .expanded_view {
+    display: block;
+}
+
+.browse_four_grid {
+    display: grid;
+    grid-template-columns: repeat(4, 210px);
+    gap: 40px 16px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.arrow_down_btn.bottom_arrow {
+    transform: rotate(-90deg); 
+    margin: 0 auto;
+}
+
+.arrow_down_btn {
+    background-color: rgb(190, 201, 153);
+    color: white;
+    opacity: 0.7;
+    border: none;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: sans-serif;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.arrow_down_btn:hover {
+    background-color: rgb(162, 168, 73);
+}
+
+.row_2_flex .browse_card:first-of-type {
+    margin-right: -20px;
+    position: relative;
+    z-index: 1;
+}
+
+.row_2_flex .browse_card:last-of-type {
+    margin-left: -20px;
+    position: relative;
+    z-index: 1;
+}
