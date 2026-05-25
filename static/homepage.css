@@ -22,12 +22,14 @@
 
 .logo {
     height: 28vh;
+    will-change: transform, opacity;
 }
 
 .good_text {
     font-size: 10vh;
     margin-top: -40px;
     color: rgb(68, 12, 13);
+    will-change: transform, opacity;
 }
 
 .header {
@@ -70,12 +72,24 @@
     font-style: italic;
 }
 
+.search_wrapper {
+    position: relative;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.search_wrapper form {
+    margin: 0;
+    display: block;
+}
+
 .search_bar {
     height: 5.5vh;
     width: 25vw;
     border-radius: 20px;
     border: none;
     padding-left: 40px;
+    padding-right: 36px;
     font-family: 'Roboto';
     outline: none;
     background-color: rgb(219, 225, 156);
@@ -83,7 +97,7 @@
     background-repeat: no-repeat;
     background-position: 10px center;
     background-size: 4.5vh auto;
-    margin-right: 30px;
+    box-sizing: border-box;
 }
 
 .save_icon {
@@ -210,7 +224,7 @@
 }
 
 .carousel_btn {
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgb(255, 252, 240);
     border: none;
     border-radius: 50%;
     width: 36px;

@@ -13,9 +13,11 @@
         <div class="header_top">
             <img class="small_logo" src="{% static 'assets/cravely_logo.png' %}">
             <div class="header_right">
-                <form action="/lookup/" method="GET">
-                    <input type="text" class="search_bar" name="ingredients" placeholder="Search by ingredients...">
-                </form>
+                <div class="search_wrapper">
+                    <form action="/lookup/" method="GET">
+                        <input type="text" class="search_bar" name="ingredients" placeholder="Search by ingredients...">
+                    </form>
+                </div>
                 <a href="{% url 'saved_recipes' %}">
                     <img class="save_icon" src="{% static 'assets/save_icon.png' %}">
                 </a>
@@ -201,9 +203,25 @@
         </div>
 
     </div>
-
     <script>
-        var step = 226; 
+        var logoEl = document.querySelector('.logo');
+        var goodTextEl = document.querySelector('.good_text');
+        var mainEl = document.querySelector('.main');
+
+        window.addEventListener('scroll', function() {
+            var scrollY = window.scrollY;
+            var heroHeight = mainEl.offsetHeight;
+
+            logoEl.style.transform = 'translateY(-' + (scrollY * 0.4) + 'px)';
+            goodTextEl.style.transform = 'translateY(-' + (scrollY * 0.25) + 'px)';
+
+            var fadeProgress = Math.min(scrollY / (heroHeight * 0.65), 1);
+            var opacity = Math.max(1 - fadeProgress * 1.5, 0);
+            logoEl.style.opacity = opacity;
+            goodTextEl.style.opacity = opacity;
+        }, { passive: true });
+
+        var step = 226;
         var centerOffset = 250; 
 
         var positions = { 1: 0, 2: 0, 3: 0, 4: 0 };
