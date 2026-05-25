@@ -100,6 +100,15 @@
     box-sizing: border-box;
 }
 
+.filter_icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 3.5vh;
+    cursor: pointer;
+}
+
 .save_icon {
     height: 7vh;
     cursor: pointer;
