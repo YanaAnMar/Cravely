@@ -11,45 +11,54 @@
     </head>
 
     <body>
-        {% comment %} {% include 'header.html' %} {% endcomment %}
-        <div class="recipe-title-section">
+        {% include 'header.html' %}
+        <div class="body-div">
+            <div class="recipe-title-section">
 
-            <div class="recipe-title">
-                {{ recipe.title }}
+                <div class="recipe-title">
+                    {{ recipe.title }}
+                </div>
+
+
+                <div class="recipe-tags-container">
+                    {% for tag in recipe.tags.all %}
+                        <span class="recipe-tag">
+                            {{ tag.name }}
+                        </span>
+                    {% comment %} {% empty %}
+                        <span> 
+                            No tags for this recipe 
+                        </span> {% endcomment %}
+                    {% endfor %}
+                </div>
+
+                <p> 
+                    Total time: {{ recipe.cooking_time }} minutes
+                <br>
+                    Portions: {{ recipe.portions }}
+                </p>
+
             </div>
-
-
-            <div class="recipe-tags-container">
-                {% for tag in recipe.tags.all %}
-                    <span class="recipe-tag">
-                        {{ tag.name }}
-                    </span>
-                {% empty %}
-                    <span> 
-                        No tags for this recipe 
-                    </span>
-                {% endfor %}
-            </div>
-
-            <p> 
-                Total time: {{ recipe.cooking_time }} minutes
-            </p>
-
-        </div>
+        
         
 
-        <h2>Directions</h2>
-        <ol class="recipe-steps">
-            {% for step in steps_list %}
-                {% if step.strip %}
-                    <li>{{ step.strip }}</li>
-                {% endif %}
-            {% endfor %}
-        </ol>
+            <div class="recipe-directions">
+                <h2>Directions</h2>
+                <ol class="recipe-steps">
+                    {% for step in steps_list %}
+                        {% if step.strip %}
+                            <li>{{ step.strip }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </div>
 
-            
 
 
+
+
+        </div>
+      
     </body>
 
 </html>
