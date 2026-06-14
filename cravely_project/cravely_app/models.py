@@ -10,7 +10,7 @@ class Tag(models.Model):
     
 
 class Ingredient(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.name
@@ -22,10 +22,18 @@ class Recipe(models.Model):
     cooking_time = models.IntegerField()
     portions = models.IntegerField(default=1)
     likes = models.IntegerField(default=0)
-    ingredients = models.ManyToManyField(Ingredient)
+    ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient')
     tags = models.ManyToManyField(Tag, blank=True)
     steps = models.TextField(default="", help_text="Seperate steps with |")
     favorited_by = models.ManyToManyField(User, blank=True, related_name="favorite_recipes")
 
     def __str__(self):
         return self.title
+    
+class RecipeIngredient(models.Model):
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    quantity = models.CharField(max_length=40)
+
+    def __str__(self):
+        return f"{self.quantity} of {self.ingredient.name} in {self.recipe.title}"
