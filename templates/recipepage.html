@@ -32,15 +32,33 @@
                     {% endfor %}
                 </div>
 
-                <p> 
+                
+                <h4 class="recipe-time-portions"> 
                     Total time: {{ recipe.cooking_time }} minutes
-                <br>
-                    Portions: {{ recipe.portions }}
-                </p>
-
+                </h4>
+                <h4 class="recipe-time-portions">
+                    {{ recipe.portions }} portions
+                </h4>
+                
             </div>
         
+
         
+            <div class="recipe-ingredients">
+                <h2>Ingredients</h2>
+                <ul class="recipe-ingredients-list">
+                {% for ingredient in recipe.ingredients.all %}
+                    <li>
+                        <label class="recipe-ingredient-container">
+                            <input type="checkbox">
+                            {% comment %} <span class="recipe-ingredient-checkbox"></span> {% endcomment %}
+                            <span class="recipe-ingredient-name">{{ ingredient.name }}</span>
+                        </label>
+                    </li>
+                {% endfor %}
+            </ul>
+            </div>
+
 
             <div class="recipe-directions">
                 <h2>Directions</h2>

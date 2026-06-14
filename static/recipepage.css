@@ -25,7 +25,53 @@ body{
 
     border: 3px solid #99a146;
     border-radius: 20vh;
+
+    user-select: none;
 }
+.recipe-time-portions{
+    display: inline-block;
+
+    padding: 3vh 1vw 2vh 0;
+    width: 15vw;
+}
+
+
+
+ul.recipe-ingredients-list{
+    list-style: none;
+    padding-left: 0;
+}
+.recipe-ingredient-container{
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    cursor: pointer;
+    user-select: none;
+
+    font-size: 2vh;
+    margin-bottom: 1vh;
+}
+.recipe-ingredient-checkbox{
+    height: 22px;
+    width: 22px;
+    background-color: #ffffff;
+    border: 2px solid #2ecc71; /* Your green border outline */
+    border-radius: 50%; /* Makes it a perfect circle! */
+    margin-right: 12px;
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s ease;
+}
+.recipe-ingredient-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
 
 .recipe-steps{
     color: rgb(68, 12, 13);
@@ -48,7 +94,7 @@ ol.recipe-steps li{
     max-width: 60vw;
     font-family: 1vh;
 
-    border-top: 2px solid #99a146;
+    border-top: 2px solid rgba(153, 161, 70, 0.7);
 }
 ol.recipe-steps li::before{
     content: counter(step-counter);
