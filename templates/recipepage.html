@@ -44,27 +44,29 @@
 
 
 
-            {% if recipe.image %}
-                <div class="recipe-image-container">
-                    <img src="{{ recipe.image.url }}" class="recipe-main-photo">
+          
+
+        
+            <div class="recipe-middle-info-div">
+                <div class="recipe-ingredients">
+                    <h2>Ingredients</h2>
+                    <ul class="recipe-ingredients-list">
+                        {% for item in ingredients_list %}
+                            <li>
+                                    <span class="recipe-ingredient">{{ item.quantity }} </span>
+                                    <span class="recipe-ingredient"> {{ item.ingredient.name }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
-            {% endif %}
 
-
-        
-
-        
-            <div class="recipe-ingredients">
-                <h2>Ingredients</h2>
-                <ul class="recipe-ingredients-list">
-                {% for item in ingredients_list %}
-                    <li>
-                            <span class="recipe-ingredient-quantity">{{ item.quantity }}</span>
-                            <span class="recipe-ingredient-name">{{ item.ingredient.name }}</span>
-                    </li>
-                {% endfor %}
-            </ul>
+                {% if recipe.image %}
+                    <img src="{{ recipe.image.url }}" class="recipe-main-photo">
+                {% endif %}
             </div>
+        
+            
+
 
 
             <div class="recipe-directions">
