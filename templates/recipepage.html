@@ -41,19 +41,26 @@
                 </h4>
                 
             </div>
+
+
+
+            {% if recipe.image %}
+                <div class="recipe-image-container">
+                    <img src="{{ recipe.image.url }}" class="recipe-main-photo">
+                </div>
+            {% endif %}
+
+
         
 
         
             <div class="recipe-ingredients">
                 <h2>Ingredients</h2>
                 <ul class="recipe-ingredients-list">
-                {% for ingredient in recipe.ingredients.all %}
+                {% for item in ingredients_list %}
                     <li>
-                        <label class="recipe-ingredient-container">
-                            <input type="checkbox">
-                            <span class="recipe-ingredient-checkbox"></span>
-                            <span class="recipe-ingredient-name">{{ ingredient.name }}</span>
-                        </label>
+                            <span class="recipe-ingredient-quantity">{{ item.quantity }}</span>
+                            <span class="recipe-ingredient-name">{{ item.ingredient.name }}</span>
                     </li>
                 {% endfor %}
             </ul>

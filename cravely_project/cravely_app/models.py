@@ -26,6 +26,7 @@ class Recipe(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     steps = models.TextField(default="", help_text="Seperate steps with |")
     favorited_by = models.ManyToManyField(User, blank=True, related_name="favorite_recipes")
+    image = models.ImageField(upload_to='recipe_photos/', blank=True, null=True)
 
     def __str__(self):
         return self.title
