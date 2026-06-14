@@ -1,5 +1,6 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
+    color: rgb(68, 12, 13);
 }
 
 
@@ -93,10 +94,10 @@ ol.recipe-steps li{
     display: flex;
     align-items: center;
 
-    padding: 4vh 1vw;
+    padding: 4vh 2vw;
 
     min-height: 4vh;
-    max-width: 60vw;
+    max-width: 65vw; 
     font-family: 1vh;
 
     border-top: 2px solid rgba(153, 161, 70, 0.7);
@@ -123,8 +124,6 @@ ol.recipe-steps li::before{
     border: 3px solid #dbe19c;
 
 }
-
-
 .recipe-directions{
-    padding: 4vh 5vw;
+    padding: 4vh 6vw;
 }
