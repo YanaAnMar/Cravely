@@ -12,6 +12,7 @@
     {% include 'header.html' %}
 
     <div class="main">
+        <div class="bottom_fade"></div>
         <div class="container">
             <img class="logo" src="{% static 'assets/cravely_logo.png' %}">
             <p class="good_text">good.</p>
@@ -265,6 +266,7 @@
         var logoEl = document.querySelector('.logo');
         var goodTextEl = document.querySelector('.good_text');
         var mainEl = document.querySelector('.main');
+        var bottomFadeEl = document.querySelector('.bottom_fade');
 
         window.addEventListener('scroll', function() {
             var scrollY = window.scrollY;
@@ -272,11 +274,13 @@
 
             logoEl.style.transform = 'translateY(-' + (scrollY * 0.4) + 'px)';
             goodTextEl.style.transform = 'translateY(-' + (scrollY * 0.25) + 'px)';
+            mainEl.style.backgroundPosition = 'center ' + (-scrollY * 0.3) + 'px';
 
             var fadeProgress = Math.min(scrollY / (heroHeight * 0.65), 1);
             var opacity = Math.max(1 - fadeProgress * 1.5, 0);
             logoEl.style.opacity = opacity;
             goodTextEl.style.opacity = opacity;
+            bottomFadeEl.style.opacity = fadeProgress;
         }, { passive: true });
 
         var step = 226;

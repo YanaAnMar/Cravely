@@ -11,6 +11,18 @@
     background-image: url("assets/cookies_background.PNG");
     background-size: cover;
     background-position: center;
+    position: relative;
+}
+
+.bottom_fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    background: linear-gradient(to bottom, transparent, rgb(255, 252, 240));
+    opacity: 0;
+    pointer-events: none;
 }
 
 .container {
@@ -249,11 +261,11 @@
 
 .add_button {
    position: fixed;
-   bottom: 4vh;
+   bottom: 5.5vh;
    right: 4vh;
    font-size: 30px;
-   padding-top: 25px;
-   padding-bottom: 25px;
+   padding-top: 23px;
+   padding-bottom: 23px;
    padding-left: 30px;
    padding-right: 30px;
    background:  rgb(162, 168, 73);
