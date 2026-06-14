@@ -59,10 +59,11 @@
                         {% endfor %}
                     </ul>
                 </div>
-
-                {% if recipe.image %}
-                    <img src="{{ recipe.image.url }}" class="recipe-main-photo">
-                {% endif %}
+                <div class="recipe-image-container">
+                    {% if recipe.image %}
+                        <img src="{{ recipe.image.url }}" class="recipe-main-photo">
+                    {% endif %}
+                </div>
             </div>
         
             
