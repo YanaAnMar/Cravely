@@ -30,6 +30,9 @@ body{
 
     user-select: none;
 }
+.recipe-description{
+    width: 70vw;
+}
 .recipe-time-portions{
     display: inline-block;
 

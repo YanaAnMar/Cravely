@@ -25,11 +25,12 @@
                         <span class="recipe-tag">
                             {{ tag.name }}
                         </span>
-                    {% comment %} {% empty %}
-                        <span> 
-                            No tags for this recipe 
-                        </span> {% endcomment %}
                     {% endfor %}
+                </div>
+
+                <div class="recipe-description">
+                    <p> {{recipe.description}} </p>
+
                 </div>
 
                 
