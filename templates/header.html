@@ -15,8 +15,8 @@
             <a href="{% url 'saved_recipes' %}">
                 <img class="save_icon" src="{% static 'assets/save_icon.png' %}">
             </a>
-            <a href="{% url 'profile' %}">
-                <img class="profile_icon" src="{% static 'assets/profile_icon.png' %}">
+            <a href="{% url 'profile' username=request.user.username %}">
+                <img class="profile_icon" src="{{ request.user.profile.avatar.url }}">
             </a>
         </div>
     </div>

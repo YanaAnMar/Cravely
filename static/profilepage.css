@@ -1,0 +1,44 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(68, 12, 13);
+}
+
+
+.pf-body-div{
+    padding: 22vh 7vw;
+    color: rgb(68, 12, 13);
+}
+
+
+
+
+
+.personal-info-upper{
+    width: 20vw;
+}
+.avatar-container{
+    display: inline-block;
+}
+.profile-avatar{
+    width: 30vw;
+    height: 30vw;
+
+    border-radius: 50%;
+    border: 3px solid rgb(68, 12, 13);
+    padding: 1vw;
+
+}
+.profile-details{
+    align-items: center;
+    display: inline-block;
+}
+
+
+
+
+
+
+
+.blacklist-main-container{
+    width: 20vw;
+}
