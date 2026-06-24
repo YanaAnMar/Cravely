@@ -23,14 +23,32 @@ def recipepage(request, recipe_id):
     single_recipe = get_object_or_404(Recipe, id=recipe_id)
     steps_list = single_recipe.steps.split('|')
     ingredients_list = RecipeIngredient.objects.filter(recipe=single_recipe)
+    is_saved = request.user.is_authenticated and single_recipe.favorited_by.filter(id=request.user.id).exists()
     return render(request, 'recipepage.html', {
         'recipe': single_recipe,
         'steps_list': steps_list,
-        'ingredients_list': ingredients_list
+        'ingredients_list': ingredients_list,
+        'is_saved': is_saved,
     })
 
+
+@login_required
+def toggle_save(request, recipe_id):
+    if request.method == 'POST':
+        recipe = get_object_or_404(Recipe, id=recipe_id)
+        if recipe.favorited_by.filter(id=request.user.id).exists():
+            recipe.favorited_by.remove(request.user)
+            saved = False
+        else:
+            recipe.favorited_by.add(request.user)
+            saved = True
+        return JsonResponse({'saved': saved})
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+@login_required
 def saved_recipes(request):
-    return render(request, '../templates/saved_recipes.html')
+    saved = request.user.favorite_recipes.all()
+    return render(request, '../templates/saved_recipes.html', {'saved': saved})
 
 def add_recipe(request):
     return render(request, '../templates/add_recipe.html')

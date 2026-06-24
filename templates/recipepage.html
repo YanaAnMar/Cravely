@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+
         <title>{{ recipe.title }} | Cravely</title>
-        <link rel = "stylesheet" href = "{% static 'recipepage.css' %}">
+        <link rel = "stylesheet" href = "{% static 'recipepage.css' %}">>
         
 
     </head>
@@ -19,7 +19,6 @@
                     {{ recipe.title }}
                 </div>
 
-
                 <div class="recipe-tags-container">
                     {% for tag in recipe.tags.all %}
                         <span class="recipe-tag">
@@ -30,11 +29,16 @@
 
                 <div class="recipe-description">
                     <p> {{recipe.description}} </p>
-
                 </div>
 
-                
-                <h4 class="recipe-time-portions"> 
+                {% if request.user.is_authenticated %}
+                <button class="save-btn {% if is_saved %}saved{% endif %}" id="save-btn"
+                        onclick="toggleSave({{ recipe.id }})">
+                    {% if is_saved %}Unsave recipe{% else %}Save recipe{% endif %}
+                </button>
+                {% endif %}
+
+                <h4 class="recipe-time-portions">
                     Total time: {{ recipe.cooking_time }} minutes
                 </h4>
                 <h4 class="recipe-time-portions">
@@ -87,7 +91,29 @@
 
 
         </div>
-      
+
+    <script>
+        function toggleSave(recipeId) {
+            var btn = document.getElementById('save-btn');
+            fetch('/recipe/' + recipeId + '/save/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data.saved) {
+                    btn.classList.add('saved');
+                    btn.textContent = 'Unsave recipe';
+                } else {
+                    btn.classList.remove('saved');
+                    btn.textContent = 'Save recipe';
+                }
+            });
+        }
+    </script>
     </body>
 
 </html>
