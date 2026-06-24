@@ -1,7 +1,6 @@
 {% load static %}
 
 <!DOCTYPE html>
-
 <head>
     <title> My profile </title>
 
@@ -11,22 +10,32 @@
 
 <body>
     {% include 'header.html' %}
-    
+
     <div class="pf-body-div">
     
         <div class="personal-info-upper">
 
             <div class="avatar-container">
-
                 <img src="{{ profile_user.profile.avatar.url }}" class="profile-avatar">
-
             </div>
+
+
             <div class="profile-details">
-                
+                <p class="profile-full-name">
+                    {% if profile_user.first_name or profile_user.last_name %}
+                        {{ profile_user.first_name }} {{ profile_user.last_name }}
+                    {% else %}
+                        Cravely Baker
+                    {% endif %}
+                </p>
+                <p class="profile-username"> 
+                    @{{ profile_user.username }} 
+                </p>
 
-                @{{ profile_user.username }}
+                <p>
+                    Joined Cravely: {{ profile_user.date_joined|date:"F Y" }}
+                </p>
 
-                <p >Joined Cravely: {{ profile_user.date_joined|date:"F Y" }}</p>
             </div>
 
 
@@ -36,7 +45,52 @@
 
 
         <div class="blacklist-main-container">
-            <h2> Blacklist </h2>
+            <h2 class="blacklist-title"> 
+                Blacklisted ingredients 
+                <p class="blacklist-desc">
+                     - recipes containing them will be hidden for you.
+                </p>
+            </h2>
+
+            <div class="blacklist-main">
+
+                {% csrf_token %} {% comment %}  {% endcomment %}
+
+                {% if profile_user.profile.blacklist.all %}
+
+                    
+
+                        {% for ingredient in profile_user.profile.blacklist.all %}
+                            <span class="blacklist-tag">
+                                {{ ingredient.name }}
+
+                                {% if request.user == profile_user %}
+                                    <form class="remove-ingredient-form" action="{% url 'update_blacklist' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="ingredient_name" value="{{ ingredient.name }}">
+                                        <input type="hidden" name="action" value="remove">
+                                        <button type="submit" class="remove-ingredient-btn" aria-label="Remove {{ ingredient.name }}">&times;</button>
+                                    </form>
+                                {% endif %}
+
+                            </span>
+                        {% endfor %}
+                {% else %}
+                    <p class="no-blacklist-text"> Good news! You have no food restrictions or allergies listed. </p>
+                {% endif %}
+
+
+                {% if request.user == profile_user %}
+                    <form class="inline-add-container" action="{% url 'update_blacklist' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add">
+                        <input type="text" id="blacklist-search" name="ingredient_name" placeholder="+ Add restriction..." autocomplete="off">
+                        <div id="search-results-dropdown" class="search-dropdown"></div>
+                    </form>
+                {% endif %}
+
+            </div>
+
         </div>
 
 
@@ -46,3 +100,8 @@
 
 
 </body>
+
+
+
+
+

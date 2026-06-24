@@ -1,6 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Recipe, RecipeIngredient
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Recipe, RecipeIngredient, Ingredient
 from django.contrib.auth.models import User
+
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+import json
+
 
 # Create your views here.
 
@@ -28,3 +33,49 @@ def saved_recipes(request):
 
 def add_recipe(request):
     return render(request, '../templates/add_recipe.html')
+
+
+@login_required
+def update_blacklist(request):
+    if request.method == 'POST':
+        is_json_request = request.content_type == 'application/json'
+
+        if is_json_request:
+            try:
+                data = json.loads(request.body)
+            except json.JSONDecodeError:
+                return JsonResponse({'status': 'error', 'message': 'Invalid JSON'})
+        else:
+            data = request.POST
+
+        action = data.get('action')
+        ingredient_name = data.get('ingredient_name', '').strip()
+
+        if action not in ['add', 'remove']:
+            if is_json_request:
+                return JsonResponse({'status': 'error', 'message': 'Invalid action'})
+            return redirect('profile', username=request.user.username)
+
+        if not ingredient_name:
+            if is_json_request:
+                return JsonResponse({'status': 'error', 'message': 'Ingredient name is required'})
+            return redirect('profile', username=request.user.username)
+        
+        try:
+            ingredient = Ingredient.objects.get(name__iexact=ingredient_name)
+            profile = request.user.profile
+            
+            if action == 'add':
+                profile.blacklist.add(ingredient)
+            else:
+                profile.blacklist.remove(ingredient)
+                
+            if is_json_request:
+                return JsonResponse({'status': 'success'})
+            return redirect('profile', username=request.user.username)
+        except Ingredient.DoesNotExist:
+            if is_json_request:
+                return JsonResponse({'status': 'error', 'message': 'Ingredient not found'})
+            return redirect('profile', username=request.user.username)
+            
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'})
