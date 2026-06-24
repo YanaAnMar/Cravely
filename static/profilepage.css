@@ -7,6 +7,7 @@ body{
 .pf-body-div{
     padding: 22vh 7vw;
     color: rgb(68, 12, 13);
+    /* background-color: rgba(242, 99, 99, 0.5); */
 }
 
 
@@ -14,25 +15,45 @@ body{
 
 
 .personal-info-upper{
-    width: 20vw;
+    display: flex;
+    gap: 8vw;
+    align-items: flex-start;
+    padding: 4vh 6vw;
 }
 .avatar-container{
-    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
 }
 .profile-avatar{
-    width: 30vw;
-    height: 30vw;
+    width: 20vw;
+    height: 20vw;
 
     border-radius: 50%;
     border: 3px solid rgb(68, 12, 13);
     padding: 1vw;
+    object-fit: cover;
+    background-color: white;
 
 }
 .profile-details{
-    align-items: center;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 3vh;
 }
-
+.profile-full-name{
+    font-size: 8vh;
+    font-weight: 500;
+    color: rgb(68, 12, 13);
+    margin: 0;
+}
+.profile-username{
+    font-size: 4vh;
+    font-weight: 400;
+    color: rgba(68, 12, 13, 0.7);
+    margin: 0;
+}
 
 
 
@@ -40,5 +61,100 @@ body{
 
 
 .blacklist-main-container{
-    width: 20vw;
+    margin: 6vh 15vw 2vh 15vw;
+    
+}
+.blacklist-title{
+    font-size: 4.5vh;
+    font-weight: 500;
+    color: rgb(68, 12, 13);
+    margin: 1vw;
+}
+.blacklist-desc{
+    
+    display: inline;
+    font-size: 3vh;
+    font-weight: 400;
+    color: rgba(68, 12, 13, 0.8);
+    margin: 0;
+}
+.blacklist-main{
+    padding: 1.2vw 2vw;
+
+    width: 50vw;
+    /* border: 4px solid rgba(31, 31, 21, 0.8); */
+    background-color: rgba(31, 31, 21, 0.2);
+    border-radius: 20vw;
+
+    min-height: 10vh;
+}
+.blacklist-tag{
+    display: inline-block;
+    padding: 1vh 2vh;
+    margin: 1vh 0;
+
+    text-align: center;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    background-color: rgb(239, 239, 239);
+    color: rgba(68, 12, 13, 0.7);
+
+    border: 3px solid rgba(68, 12, 13, 0.7);
+    border-radius: 20vh;
+
+    user-select: none;
+}
+
+
+
+
+
+
+
+
+.remove-ingredient-btn {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    padding: 0 0 0 0.5vh;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 2vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(68, 12, 13);
+    transition: color 0.2s;
+}
+
+.remove-ingredient-btn:hover {
+    color: rgb(68, 12, 13);
+}
+
+.remove-ingredient-form {
+    display: inline;
+    margin: 0;
+}
+
+.inline-add-container {
+    position: relative;
+    display: inline-block;
+}
+
+#blacklist-search {
+    border: 3px solid rgba(68, 12, 13, 0.7);
+    border-radius: 3vh;
+    padding: 0.5vh 1.2vw;
+    font-size: 1rem;
+    color: rgb(68, 12, 13);
+    background-color: rgb(239, 239, 239);
+    outline: none;
+    width: 2.5vw;
+    height: 3.5vh;
+    transition: all 0.3s ease;
+}
+
+#blacklist-search:focus {
+    border-style: solid;
+    width: 8vw;
+    background-color: rgba(192, 57, 43, 0.05);
 }
