@@ -10,7 +10,8 @@ import json
 # Create your views here.
 
 def homepage(request):
-    return render(request, '../templates/homepage.html')
+    recipes = Recipe.objects.all()
+    return render(request, '../templates/homepage.html', {'recipes': recipes})
 
 def profile(request, username):
     user_profile = get_object_or_404(User, username=username)

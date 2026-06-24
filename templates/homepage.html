@@ -18,12 +18,6 @@
             <p class="good_text">good.</p>
         </div>
 
-        <a href="{% url 'recipepage' 1 %}" 
-           style="position:fixed; bottom:120px; right:24px; background:#ff6b35; font-size:14px; text-decoration:none; padding:10px; color:white; border-radius:5px;">
-           Recipe Page →
-        </a>
-
-        <a class="add_button" href="{% url 'add_recipe' %}">+</a>
     </div>
 
     <div class="take_a_look">
@@ -35,30 +29,16 @@
                 <button id="prev_btn_1" class="carousel_btn" onclick="go(1, -1)">&#10094;</button>
                 <div class="carousel_window">
                     <div id="track_1" class="carousel_track">
-                        <div class="carousel_card card_1">
-                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                            <p>Creamy Lemon Chicken</p>
-                        </div>
-                        <div class="carousel_card card_1">
-                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                            <p>The Best Chewy Chocolate Chip Cookies</p>
-                        </div>
-                        <div class="carousel_card card_1">
-                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                            <p>Honey-Pepper Spicy Wings</p>
-                        </div>
-                        <div class="carousel_card card_1">
-                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                            <p>Creamy Lemon Chicken</p>
-                        </div>
-                        <div class="carousel_card card_1">
-                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                            <p>The Best Chewy Chocolate Chip Cookies</p>
-                        </div>
-                        <div class="carousel_card card_1">
-                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                            <p>Honey-Pepper Spicy Wings</p>
-                        </div>
+                        {% for recipe in recipes %}
+                        <a class="carousel_card card_1" href="{% url 'recipepage' recipe.id %}">
+                            {% if recipe.image %}
+                                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                            {% else %}
+                                <img src="{% static 'assets/pasta_picture.PNG' %}" alt="{{ recipe.title }}">
+                            {% endif %}
+                            <p>{{ recipe.title }}</p>
+                        </a>
+                        {% endfor %}
                     </div>
                 </div>
                 <button class="carousel_btn" onclick="go(1, 1)">&#10095;</button>
@@ -73,30 +53,16 @@
                 <button id="prev_btn_2" class="carousel_btn" onclick="go(2, -1)">&#10094;</button>
                 <div class="carousel_window">
                     <div id="track_2" class="carousel_track">
-                        <div class="carousel_card card_2">
-                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                            <p>Creamy Lemon Chicken</p>
-                        </div>
-                        <div class="carousel_card card_2">
-                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                            <p>The Best Chewy Chocolate Chip Cookies</p>
-                        </div>
-                        <div class="carousel_card card_2">
-                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                            <p>Honey-Pepper Spicy Wings</p>
-                        </div>
-                        <div class="carousel_card card_2">
-                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                            <p>Creamy Lemon Chicken</p>
-                        </div>
-                        <div class="carousel_card card_2">
-                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                            <p>The Best Chewy Chocolate Chip Cookies</p>
-                        </div>
-                        <div class="carousel_card card_2">
-                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                            <p>Honey-Pepper Spicy Wings</p>
-                        </div>
+                        {% for recipe in recipes %}
+                        <a class="carousel_card card_2" href="{% url 'recipepage' recipe.id %}">
+                            {% if recipe.image %}
+                                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                            {% else %}
+                                <img src="{% static 'assets/pasta_picture.PNG' %}" alt="{{ recipe.title }}">
+                            {% endif %}
+                            <p>{{ recipe.title }}</p>
+                        </a>
+                        {% endfor %}
                     </div>
                 </div>
                 <button class="carousel_btn" onclick="go(2, 1)">&#10095;</button>
@@ -111,30 +77,16 @@
                 <button id="prev_btn_3" class="carousel_btn" onclick="go(3, -1)">&#10094;</button>
                 <div class="carousel_window">
                     <div id="track_3" class="carousel_track">
-                        <div class="carousel_card card_3">
-                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                            <p>Creamy Lemon Chicken</p>
-                        </div>
-                        <div class="carousel_card card_3">
-                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                            <p>The Best Chewy Chocolate Chip Cookies</p>
-                        </div>
-                        <div class="carousel_card card_3">
-                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                            <p>Honey-Pepper Spicy Wings</p>
-                        </div>
-                        <div class="carousel_card card_3">
-                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                            <p>Creamy Lemon Chicken</p>
-                        </div>
-                        <div class="carousel_card card_3">
-                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                            <p>The Best Chewy Chocolate Chip Cookies</p>
-                        </div>
-                        <div class="carousel_card card_3">
-                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                            <p>Honey-Pepper Spicy Wings</p>
-                        </div>
+                        {% for recipe in recipes %}
+                        <a class="carousel_card card_3" href="{% url 'recipepage' recipe.id %}">
+                            {% if recipe.image %}
+                                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                            {% else %}
+                                <img src="{% static 'assets/pasta_picture.PNG' %}" alt="{{ recipe.title }}">
+                            {% endif %}
+                            <p>{{ recipe.title }}</p>
+                        </a>
+                        {% endfor %}
                     </div>
                 </div>
                 <button class="carousel_btn" onclick="go(3, 1)">&#10095;</button>
@@ -149,116 +101,36 @@
                 <button id="prev_btn_4" class="carousel_btn" onclick="go(4, -1)">&#10094;</button>
                 <div class="carousel_window">
                     <div id="track_4" class="carousel_track">
-                        <div class="carousel_card card_4">
-                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                            <p>Creamy Lemon Chicken</p>
-                        </div>
-                        <div class="carousel_card card_4">
-                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                            <p>The Best Chewy Chocolate Chip Cookies</p>
-                        </div>
-                        <div class="carousel_card card_4">
-                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                            <p>Honey-Pepper Spicy Wings</p>
-                        </div>
-                        <div class="carousel_card card_4">
-                            <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                            <p>Creamy Lemon Chicken</p>
-                        </div>
-                        <div class="carousel_card card_4">
-                            <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                            <p>The Best Chewy Chocolate Chip Cookies</p>
-                        </div>
-                        <div class="carousel_card card_4">
-                            <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                            <p>Honey-Pepper Spicy Wings</p>
-                        </div>
+                        {% for recipe in recipes %}
+                        <a class="carousel_card card_4" href="{% url 'recipepage' recipe.id %}">
+                            {% if recipe.image %}
+                                <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                            {% else %}
+                                <img src="{% static 'assets/pasta_picture.PNG' %}" alt="{{ recipe.title }}">
+                            {% endif %}
+                            <p>{{ recipe.title }}</p>
+                        </a>
+                        {% endfor %}
                     </div>
                 </div>
                 <button class="carousel_btn" onclick="go(4, 1)">&#10095;</button>
             </div>
         </div>
     </div>
-    
+
     <div class="browse_all_section">
         <h2 class="browse_all_title">Browse all</h2>
-        
-        <div id="browse_grid" class="browse_grid collapsed">
-
-            <div class="collapsed_view">
-                <div class="row_1_flex">
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                        <p>Creamy Lemon Chicken</p>
-                    </div>
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                        <p>The Best Chewy Chocolate Chip Cookies</p>
-                    </div>
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                        <p>Honey-Pepper Spicy Wings</p>
-                    </div>
-                </div>
-
-                <div class="row_2_flex">
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                        <p>Creamy Lemon Chicken</p>
-                    </div>
-
-                    <button class="arrow_down_btn static_arrow" onclick="toggleBrowse()">
-                        &#10095;
-                    </button>
-
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                        <p>The Best Chewy Chocolate Chip Cookies</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="expanded_view">
-                <div class="browse_four_grid">
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                        <p>Creamy Lemon Chicken</p>
-                    </div>
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                        <p>The Best Chewy Chocolate Chip Cookies</p>
-                    </div>
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                        <p>Honey-Pepper Spicy Wings</p>
-                    </div>
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                        <p>Creamy Lemon Chicken</p>
-                    </div>
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                        <p>The Best Chewy Chocolate Chip Cookies</p>
-                    </div>
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/wings_picture.PNG' %}" alt="Honey-Pepper Spicy Wings">
-                        <p>Honey-Pepper Spicy Wings</p>
-                    </div>
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/pasta_picture.PNG' %}" alt="Creamy Lemon Chicken">
-                        <p>Creamy Lemon Chicken</p>
-                    </div>
-                    <div class="carousel_card browse_card">
-                        <img src="{% static 'assets/cookie_picture.PNG' %}" alt="Chocolate Chip Cookies">
-                        <p>The Best Chewy Chocolate Chip Cookies</p>
-                    </div>
-                </div>
-
-                <button class="arrow_down_btn bottom_arrow" onclick="toggleBrowse()">
-                    &#10095;
-                </button>
-            </div>
-
+        <div class="browse_four_grid">
+            {% for recipe in recipes %}
+            <a class="carousel_card browse_card" href="{% url 'recipepage' recipe.id %}">
+                {% if recipe.image %}
+                    <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                {% else %}
+                    <img src="{% static 'assets/pasta_picture.PNG' %}" alt="{{ recipe.title }}">
+                {% endif %}
+                <p>{{ recipe.title }}</p>
+            </a>
+            {% endfor %}
         </div>
     </div>
 
@@ -284,7 +156,7 @@
         }, { passive: true });
 
         var step = 226;
-        var centerOffset = 250; 
+        var centerOffset = 250;
 
         var positions = { 1: 0, 2: 0, 3: 0, 4: 0 };
 
@@ -315,7 +187,7 @@
                 track.style.transition = 'none';
                 var currentOffset = centerOffset - (currentPos * step);
                 track.style.transform = 'translateX(' + currentOffset + 'px)';
-                track.offsetHeight; 
+                track.offsetHeight;
                 track.style.transition = 'transform 0.4s ease';
             } else {
                 currentPos = next;
