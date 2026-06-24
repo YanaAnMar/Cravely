@@ -403,3 +403,179 @@
     position: relative;
     z-index: 1;
 }
+
+/* Filter panel */
+.filter_panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 480px;
+    background-color: rgb(235, 240, 200);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    padding: 18px 20px;
+    z-index: 2000;
+    flex-direction: row;
+    gap: 0;
+    box-sizing: border-box;
+}
+
+.filter_panel.open {
+    display: flex;
+}
+
+.filter_col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 14px;
+}
+
+.filter_col_label {
+    margin: 0 0 4px 0;
+    font-family: 'Roboto';
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgb(68, 12, 13);
+    font-weight: 600;
+}
+
+.filter_divider {
+    width: 2px;
+    background-color: rgb(162, 168, 73);
+    border-radius: 2px;
+    align-self: stretch;
+    margin: 4px 0;
+    flex-shrink: 0;
+}
+
+/* Fridge input */
+.fridge_input_row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.fridge_text_input {
+    flex: 1;
+    border: 1.5px solid rgb(162, 168, 73);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-family: 'Roboto';
+    font-size: 0.8rem;
+    background-color: rgb(245, 248, 220);
+    outline: none;
+    color: rgb(68, 12, 13);
+}
+
+.fridge_text_input::placeholder {
+    color: rgb(140, 145, 80);
+}
+
+.fridge_add_btn {
+    background-color: rgb(162, 168, 73);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.fridge_add_btn:hover {
+    background-color: rgb(130, 136, 55);
+}
+
+.fridge_tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 20px;
+}
+
+.fridge_pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgb(219, 225, 156);
+    border: 1.5px solid rgb(162, 168, 73);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-family: 'Roboto';
+    font-size: 0.78rem;
+    color: rgb(68, 12, 13);
+}
+
+.fridge_pill_remove {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.7rem;
+    color: rgb(68, 12, 13);
+}
+
+.fridge_pill_remove:hover {
+    color: rgb(150, 20, 20);
+}
+
+/* Filter tags */
+.filter_tags_grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter_tag_label {
+    cursor: pointer;
+}
+
+.filter_checkbox {
+    display: none;
+}
+
+.filter_pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1.5px solid rgb(162, 168, 73);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: 'Roboto';
+    font-size: 0.8rem;
+    color: rgb(68, 12, 13);
+    background-color: rgb(235, 240, 200);
+    transition: background-color 0.2s, border-color 0.2s;
+    user-select: none;
+}
+
+.filter_tag_label:hover .filter_pill {
+    background-color: rgb(219, 225, 156);
+}
+
+.filter_pill.selected {
+    background-color: rgb(162, 168, 73);
+    color: white;
+    border-color: rgb(130, 136, 55);
+}
+
+.filter_pill.selected .pill_symbol {
+    color: white;
+}
+
+.pill_symbol {
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: rgb(68, 12, 13);
+}
+
+.filter_icon.active {
+    opacity: 0.7;
+}

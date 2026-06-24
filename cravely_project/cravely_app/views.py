@@ -22,3 +22,27 @@ def saved_recipes(request):
 
 def add_recipe(request):
     return render(request, '../templates/add_recipe.html')
+
+def lookup(request):
+    query = request.GET.get('q', '')
+    filters = request.GET.getlist('filter')
+    fridge = request.GET.getlist('fridge')
+
+    results = Recipe.objects.all()
+
+    if query:
+        results = results.filter(title__icontains=query)
+
+    if filters:
+        results = results.filter(tags__name__in=filters).distinct()
+
+    if fridge:
+        for ingredient_name in fridge:
+            results = results.filter(ingredients__name__icontains=ingredient_name)
+
+    return render(request, '../templates/lookup.html', {
+        'results': results,
+        'query': query,
+        'active_filters': filters,
+        'fridge': fridge,
+    })

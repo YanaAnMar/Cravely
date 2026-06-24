@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results - Cravely</title>
+    <link rel="stylesheet" href="{% static 'homepage.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        .lookup_page {
+            padding-top: 120px;
+            padding-left: 40px;
+            padding-right: 40px;
+            min-height: 100vh;
+        }
+
+        .lookup_heading {
+            font-size: 22px;
+            color: rgb(68, 12, 13);
+            margin-bottom: 8px;
+        }
+
+        .lookup_subheading {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 32px;
+        }
+
+        .lookup_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 24px;
+        }
+
+        .lookup_card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .lookup_card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.13);
+        }
+
+        .lookup_card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .lookup_card_body {
+            padding: 10px 12px 14px;
+        }
+
+        .lookup_card_title {
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 4px;
+        }
+
+        .lookup_card_meta {
+            font-size: 12px;
+            color: #999;
+            margin: 0;
+        }
+
+        .no_results {
+            text-align: center;
+            padding: 80px 0;
+            color: #aaa;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <div class="lookup_page">
+        {% if query %}
+            <h2 class="lookup_heading">Results for "{{ query }}"</h2>
+        {% else %}
+            <h2 class="lookup_heading">All recipes</h2>
+        {% endif %}
+
+        <p class="lookup_subheading">{{ results|length }} recipe{{ results|length|pluralize }} found</p>
+
+        {% if results %}
+            <div class="lookup_grid">
+                {% for recipe in results %}
+                    <a class="lookup_card" href="{% url 'recipepage' recipe.id %}">
+                        <div class="lookup_card_body">
+                            <p class="lookup_card_title">{{ recipe.title }}</p>
+                            <p class="lookup_card_meta">{{ recipe.cooking_time }} min &middot; {{ recipe.portions }} serving{{ recipe.portions|pluralize }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no_results">
+                <p>No recipes found. Try a different search or remove some filters.</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

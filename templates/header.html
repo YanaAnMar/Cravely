@@ -7,10 +7,46 @@
         <img class="small_logo" src="{% static 'assets/cravely_logo.png' %}">
         <div class="header_right">
             <div class="search_wrapper">
-                <form action="/lookup/" method="GET">
-                    <input type="text" class="search_bar" name="ingredients" placeholder="Search by ingredients...">
+                <form action="/lookup/" method="GET" id="search_form">
+                    <input type="text" class="search_bar" name="q" placeholder="Search a recipe or ingredient...">
+                    <div class="filter_panel" id="filter_panel">
+                        <div class="filter_col">
+                            <p class="filter_col_label">In my fridge</p>
+                            <div class="fridge_input_row">
+                                <input type="text" id="fridge_input" class="fridge_text_input" placeholder="Add ingredient...">
+                                <button type="button" class="fridge_add_btn" onclick="addFridgeIngredient()">+</button>
+                            </div>
+                            <div id="fridge_tags" class="fridge_tags"></div>
+                        </div>
+                        <div class="filter_divider"></div>
+                        <div class="filter_col">
+                            <p class="filter_col_label">Filters</p>
+                            <div class="filter_tags_grid">
+                                <label class="filter_tag_label">
+                                    <input type="checkbox" name="filter" value="sweet" class="filter_checkbox">
+                                    <span class="filter_pill">Sweet <span class="pill_symbol">+</span></span>
+                                </label>
+                                <label class="filter_tag_label">
+                                    <input type="checkbox" name="filter" value="salty" class="filter_checkbox">
+                                    <span class="filter_pill">Salty <span class="pill_symbol">+</span></span>
+                                </label>
+                                <label class="filter_tag_label">
+                                    <input type="checkbox" name="filter" value="vegan" class="filter_checkbox">
+                                    <span class="filter_pill">Vegan <span class="pill_symbol">+</span></span>
+                                </label>
+                                <label class="filter_tag_label">
+                                    <input type="checkbox" name="filter" value="light_meal" class="filter_checkbox">
+                                    <span class="filter_pill">Light meal <span class="pill_symbol">+</span></span>
+                                </label>
+                                <label class="filter_tag_label">
+                                    <input type="checkbox" name="filter" value="big_meal" class="filter_checkbox">
+                                    <span class="filter_pill">Big meal <span class="pill_symbol">+</span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </form>
-                <img class="filter_icon" src="{% static 'assets/filter_icon.PNG' %}">
+                <img class="filter_icon" src="{% static 'assets/filter_icon.PNG' %}" onclick="toggleFilterPanel()" id="filter_icon_btn">
             </div>
             <a href="{% url 'saved_recipes' %}">
                 <img class="save_icon" src="{% static 'assets/save_icon.png' %}">
@@ -28,3 +64,82 @@
         <p>Quick meals</p>
     </div>
 </div>
+
+<script>
+    function toggleFilterPanel() {
+        var panel = document.getElementById('filter_panel');
+        var icon = document.getElementById('filter_icon_btn');
+        var isOpen = panel.classList.contains('open');
+        if (isOpen) {
+            panel.classList.remove('open');
+            icon.classList.remove('active');
+        } else {
+            panel.classList.add('open');
+            icon.classList.add('active');
+        }
+    }
+
+    document.addEventListener('click', function(e) {
+        var panel = document.getElementById('filter_panel');
+        var icon = document.getElementById('filter_icon_btn');
+        var wrapper = document.querySelector('.search_wrapper');
+        if (!wrapper.contains(e.target)) {
+            panel.classList.remove('open');
+            icon.classList.remove('active');
+        }
+    });
+
+    document.querySelectorAll('.filter_checkbox').forEach(function(cb) {
+        cb.addEventListener('change', function() {
+            var pill = this.nextElementSibling;
+            var sym = pill.querySelector('.pill_symbol');
+            if (this.checked) {
+                pill.classList.add('selected');
+                sym.textContent = 'x';
+            } else {
+                pill.classList.remove('selected');
+                sym.textContent = '+';
+            }
+        });
+    });
+
+    function addFridgeIngredient() {
+        var input = document.getElementById('fridge_input');
+        var val = input.value.trim();
+        if (!val) return;
+
+        var container = document.getElementById('fridge_tags');
+        var form = document.getElementById('search_form');
+
+        var tag = document.createElement('span');
+        tag.className = 'fridge_pill';
+
+        var hidden = document.createElement('input');
+        hidden.type = 'hidden';
+        hidden.name = 'fridge';
+        hidden.value = val;
+
+        tag.textContent = val + ' ';
+        var x = document.createElement('span');
+        x.textContent = 'x';
+        x.className = 'fridge_pill_remove';
+        x.onclick = function(e) {
+            e.stopPropagation();
+            container.removeChild(tag);
+            form.removeChild(hidden);
+        };
+        tag.appendChild(x);
+        container.appendChild(tag);
+        form.appendChild(hidden);
+
+        input.value = '';
+        input.focus();
+    }
+
+    document.getElementById('fridge_input').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addFridgeIngredient();
+        }
+    });
+</script>
