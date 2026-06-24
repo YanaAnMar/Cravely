@@ -83,15 +83,21 @@ body{
 
     width: 50vw;
     /* border: 4px solid rgba(31, 31, 21, 0.8); */
-    background-color: rgba(31, 31, 21, 0.2);
-    border-radius: 20vw;
+    /* background-color: rgba(31, 31, 21, 0.2); */
+    background-color: rgba(68, 12, 13, 0.5);
+    border-radius: 5vh;
 
     min-height: 10vh;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    
 }
 .blacklist-tag{
     display: inline-block;
     padding: 1vh 2vh;
-    margin: 1vh 0;
+    margin: 1vh 0.4vw;
 
     text-align: center;
     font-weight: 600;
@@ -105,12 +111,6 @@ body{
 
     user-select: none;
 }
-
-
-
-
-
-
 
 
 .remove-ingredient-btn {
@@ -151,10 +151,11 @@ body{
     width: 2.5vw;
     height: 3.5vh;
     transition: all 0.3s ease;
+    margin-top: 1.1vh;
 }
 
 #blacklist-search:focus {
     border-style: solid;
     width: 8vw;
-    background-color: rgba(192, 57, 43, 0.05);
+    background-color: rgba(255, 255, 255, 0.6);
 }
