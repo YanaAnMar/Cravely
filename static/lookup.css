@@ -1,0 +1,113 @@
+.lookup_page {
+    padding-top: 22vh;
+    padding-left: 6vw;
+    padding-right: 6vw;
+    min-height: 100vh;
+}
+
+.lookup_heading {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-size: 1.4rem;
+    color: rgb(68, 12, 13);
+    margin-bottom: 4px;
+}
+
+.lookup_subheading {
+    font-family: 'Roboto';
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 28px;
+}
+
+.lookup_list {
+    display: flex;
+    flex-direction: column;
+}
+
+.lookup_card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 3px solid rgb(219, 225, 156);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.15s;
+}
+
+.lookup_card:first-child {
+    border-top: 3px solid rgb(219, 225, 156);
+}
+
+.lookup_card:hover {
+    background-color: rgba(219, 225, 156, 0.15);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    border-color: transparent;
+}
+
+.lookup_card_img {
+    width: 240px;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0;
+    background-color: rgb(235, 240, 200);
+}
+
+.lookup_card_img_placeholder {
+    width: 240px;
+    height: 170px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    background-color: rgb(219, 225, 156);
+}
+
+.lookup_card_body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lookup_card_title {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: rgb(68, 12, 13);
+    margin: 0;
+}
+
+.lookup_card_meta {
+    font-family: 'Roboto';
+    font-size: 0.95rem;
+    color: #999;
+    margin: 0;
+}
+
+.lookup_card_tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.lookup_tag_pill {
+    border: 2px solid rgb(162, 168, 73);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-family: 'Roboto';
+    font-size: 0.85rem;
+    color: rgb(68, 12, 13);
+}
+
+.no_results {
+    text-align: center;
+    padding: 80px 0;
+    color: #aaa;
+    font-family: 'Roboto';
+    font-size: 1rem;
+}

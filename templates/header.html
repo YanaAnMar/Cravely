@@ -1,49 +1,39 @@
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'homepage.css' %}">
+<link rel="stylesheet" href="{% static 'header.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <div class="header">
     <div class="header_top">
-        <img class="small_logo" src="{% static 'assets/cravely_logo.png' %}">
+        <a href="{% url 'homepage' %}"><img class="small_logo" src="{% static 'assets/cravely_logo.png' %}"></a>
         <div class="header_right">
             <div class="search_wrapper">
                 <form action="/lookup/" method="GET" id="search_form">
                     <input type="text" class="search_bar" name="q" placeholder="Search a recipe or ingredient...">
                     <div class="filter_panel" id="filter_panel">
-                        <div class="filter_col">
-                            <p class="filter_col_label">In my fridge</p>
-                            <div class="fridge_input_row">
-                                <input type="text" id="fridge_input" class="fridge_text_input" placeholder="Add ingredient...">
-                                <button type="button" class="fridge_add_btn" onclick="addFridgeIngredient()">+</button>
+                        <div class="filter_panel_cols">
+                            <div class="filter_col">
+                                <p class="filter_col_label">In my fridge</p>
+                                <div class="fridge_input_row">
+                                    <input type="text" id="fridge_input" class="fridge_text_input" placeholder="Add ingredient...">
+                                    <button type="button" class="fridge_add_btn" onclick="addFridgeIngredient()">+</button>
+                                </div>
+                                <div id="fridge_tags" class="fridge_tags"></div>
                             </div>
-                            <div id="fridge_tags" class="fridge_tags"></div>
-                        </div>
-                        <div class="filter_divider"></div>
-                        <div class="filter_col">
-                            <p class="filter_col_label">Filters</p>
-                            <div class="filter_tags_grid">
-                                <label class="filter_tag_label">
-                                    <input type="checkbox" name="filter" value="sweet" class="filter_checkbox">
-                                    <span class="filter_pill">Sweet <span class="pill_symbol">+</span></span>
-                                </label>
-                                <label class="filter_tag_label">
-                                    <input type="checkbox" name="filter" value="salty" class="filter_checkbox">
-                                    <span class="filter_pill">Salty <span class="pill_symbol">+</span></span>
-                                </label>
-                                <label class="filter_tag_label">
-                                    <input type="checkbox" name="filter" value="vegan" class="filter_checkbox">
-                                    <span class="filter_pill">Vegan <span class="pill_symbol">+</span></span>
-                                </label>
-                                <label class="filter_tag_label">
-                                    <input type="checkbox" name="filter" value="light_meal" class="filter_checkbox">
-                                    <span class="filter_pill">Light meal <span class="pill_symbol">+</span></span>
-                                </label>
-                                <label class="filter_tag_label">
-                                    <input type="checkbox" name="filter" value="big_meal" class="filter_checkbox">
-                                    <span class="filter_pill">Big meal <span class="pill_symbol">+</span></span>
-                                </label>
+                            <div class="filter_divider"></div>
+                            <div class="filter_col">
+                                <p class="filter_col_label">Filters</p>
+                                <div class="filter_tags_grid">
+                                    {% for tag in all_tags %}
+                                    <label class="filter_tag_label">
+                                        <input type="checkbox" name="filter" value="{{ tag.name }}" class="filter_checkbox">
+                                        <span class="filter_pill">{{ tag.display_name }} <span class="pill_symbol">+</span></span>
+                                    </label>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
+                        <button type="submit" class="filter_search_btn">Search</button>
                     </div>
                 </form>
                 <img class="filter_icon" src="{% static 'assets/filter_icon.PNG' %}" onclick="toggleFilterPanel()" id="filter_icon_btn">
@@ -51,9 +41,15 @@
             <a href="{% url 'saved_recipes' %}">
                 <img class="save_icon" src="{% static 'assets/save_icon.png' %}">
             </a>
-            <a href="{% url 'profile' username=request.user.username %}">
-                <img class="profile_icon" src="{{ request.user.profile.avatar.url }}">
-            </a>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'profile' username=request.user.username %}">
+                    <img class="profile_icon" src="{{ request.user.profile.avatar.url }}">
+                </a>
+            {% else %}
+                <a href="#">
+                    <img class="profile_icon" src="{% static 'assets/profile_icon.png' %}">
+                </a>
+            {% endif %}
         </div>
     </div>
 
@@ -66,6 +62,12 @@
 </div>
 
 <script>
+    document.querySelector('.search_bar').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            document.getElementById('search_form').submit();
+        }
+    });
+
     function toggleFilterPanel() {
         var panel = document.getElementById('filter_panel');
         var icon = document.getElementById('filter_icon_btn');
@@ -74,6 +76,13 @@
             panel.classList.remove('open');
             icon.classList.remove('active');
         } else {
+            var wrapper = document.querySelector('.search_wrapper');
+            var searchBar = document.querySelector('.search_bar');
+            var panelWidth = 480;
+            var left = (searchBar.offsetWidth - panelWidth) / 2 + 30;
+            var wrapperScreenLeft = wrapper.getBoundingClientRect().left;
+            left = Math.max(-wrapperScreenLeft + 8, left);
+            panel.style.left = left + 'px';
             panel.classList.add('open');
             icon.classList.add('active');
         }
