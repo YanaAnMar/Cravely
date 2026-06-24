@@ -9,6 +9,7 @@ urlpatterns = [
     #path('recipepage/', views.recipepage, name = 'recipepage'),
 
     path('saved/', views.saved_recipes, name='saved_recipes'),
-    path('add/', views.add_recipe, name='add_recipe')
+    path('add/', views.add_recipe, name='add_recipe'),
+    path('lookup/', views.lookup, name='lookup'),
     #path('ime/', views.ime, name = 'ime'),
 ]
