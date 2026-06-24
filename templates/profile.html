@@ -5,18 +5,44 @@
 <head>
     <title> My profile </title>
 
-    <link rel = "stylesheet" href = "{% static 'homepage.css' %}"> </link>
+    <link rel = "stylesheet" href = "{% static 'profilepage.css' %}"> </link>
 
 </head>
 
 <body>
-    <p>
-        Profiles
-    </p>
+    {% include 'header.html' %}
+    
+    <div class="pf-body-div">
+    
+        <div class="personal-info-upper">
 
-    <button class = "button"> 
-        Click me 
-    </button>
+            <div class="avatar-container">
+
+                <img src="{{ profile_user.profile.avatar.url }}" class="profile-avatar">
+
+            </div>
+            <div class="profile-details">
+                
+
+                @{{ profile_user.username }}
+
+                <p >Joined Cravely: {{ profile_user.date_joined|date:"F Y" }}</p>
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="blacklist-main-container">
+            <h2> Blacklist </h2>
+        </div>
+
+
+
+    </div>
+    
 
 
 </body>

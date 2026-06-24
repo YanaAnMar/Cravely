@@ -1,5 +1,6 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
+    color: rgb(68, 12, 13);
 }
 
 
@@ -15,6 +16,7 @@ body{
 .recipe-tag{
     display: inline-block;
     padding: 1vh 2vh;
+    margin: 1vh 0;
 
     text-align: center;
     font-weight: 600;
@@ -28,48 +30,72 @@ body{
 
     user-select: none;
 }
+.recipe-description{
+    width: 70vw;
+}
 .recipe-time-portions{
     display: inline-block;
 
-    padding: 3vh 1vw 2vh 0;
+    padding: 3vh 0vw 2vh 1vw;
     width: 15vw;
 }
 
 
 
+.recipe-middle-info-div{
+    display: flex;
+    gap: 4vw;       
+    align-items: stretch; 
+    
+    padding: 0 4vw;
+    margin-bottom: 4vh; 
+    position: relative;
+}
+.recipe-main-photo{
+    position: absolute;
+    
+    top: 1vw;               
+    left: 1vw;              
+    
+    
+    width: calc(100% - 2vw);
+    height: calc(100% - 2vw);
+    
+    
+    object-fit: cover;       
+    object-position: center;
+}
+.recipe-image-container{
+    flex: 1;
+    max-width: 40vw;         
+    position: relative;      
+    border: 2px solid #dbe19c;    
+    overflow: hidden;        
+
+    padding: 10px;           
+    box-sizing: border-box;
+
+    
+}
+
+.recipe-ingredients{
+    flex: 1;
+}
 ul.recipe-ingredients-list{
     list-style: none;
     padding-left: 0;
 }
-.recipe-ingredient-container{
+ul.recipe-ingredients-list li{
     display: flex;
-    align-items: center;
-    position: relative;
-
-    cursor: pointer;
-    user-select: none;
-
-    font-size: 2vh;
-    margin-bottom: 1vh;
+    margin-bottom: 1.5vh;
 }
-.recipe-ingredient-checkbox{
-    height: 22px;
-    width: 22px;
-    background-color: #ffffff;
-    border: 2px solid #2ecc71; /* Your green border outline */
-    border-radius: 50%; /* Makes it a perfect circle! */
-    margin-right: 12px;
+.recipe-ingredient{
     display: inline-block;
-    position: relative;
-    transition: all 0.2s ease;
+    padding-right: 0.5vw;
+    font-size: 2.5vh;
 }
-.recipe-ingredient-checkbox input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-}
+
+
 
 
 
@@ -88,10 +114,10 @@ ol.recipe-steps li{
     display: flex;
     align-items: center;
 
-    padding: 4vh 1vw;
+    padding: 4vh 2vw;
 
     min-height: 4vh;
-    max-width: 60vw;
+    max-width: 65vw; 
     font-family: 1vh;
 
     border-top: 2px solid rgba(153, 161, 70, 0.7);
@@ -118,8 +144,6 @@ ol.recipe-steps li::before{
     border: 3px solid #dbe19c;
 
 }
-
-
 .recipe-directions{
-    padding: 4vh 5vw;
+    padding: 4vh 6vw;
 }

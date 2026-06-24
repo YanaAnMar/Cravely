@@ -25,11 +25,12 @@
                         <span class="recipe-tag">
                             {{ tag.name }}
                         </span>
-                    {% comment %} {% empty %}
-                        <span> 
-                            No tags for this recipe 
-                        </span> {% endcomment %}
                     {% endfor %}
+                </div>
+
+                <div class="recipe-description">
+                    <p> {{recipe.description}} </p>
+
                 </div>
 
                 
@@ -41,23 +42,33 @@
                 </h4>
                 
             </div>
-        
+
+
+
+          
 
         
-            <div class="recipe-ingredients">
-                <h2>Ingredients</h2>
-                <ul class="recipe-ingredients-list">
-                {% for ingredient in recipe.ingredients.all %}
-                    <li>
-                        <label class="recipe-ingredient-container">
-                            <input type="checkbox">
-                            {% comment %} <span class="recipe-ingredient-checkbox"></span> {% endcomment %}
-                            <span class="recipe-ingredient-name">{{ ingredient.name }}</span>
-                        </label>
-                    </li>
-                {% endfor %}
-            </ul>
+            <div class="recipe-middle-info-div">
+                <div class="recipe-ingredients">
+                    <h2>Ingredients</h2>
+                    <ul class="recipe-ingredients-list">
+                        {% for item in ingredients_list %}
+                            <li>
+                                    <span class="recipe-ingredient">{{ item.quantity }} </span>
+                                    <span class="recipe-ingredient"> {{ item.ingredient.name }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="recipe-image-container">
+                    {% if recipe.image %}
+                        <img src="{{ recipe.image.url }}" class="recipe-main-photo">
+                    {% endif %}
+                </div>
             </div>
+        
+            
+
 
 
             <div class="recipe-directions">
