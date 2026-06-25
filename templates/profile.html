@@ -84,8 +84,7 @@
                     <form class="inline-add-container" action="{% url 'update_blacklist' %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="action" value="add">
-                        <input type="text" id="blacklist-search" name="ingredient_name" placeholder="+ Add restriction..." autocomplete="off">
-                        <div id="search-results-dropdown" class="search-dropdown"></div>
+                        <input type="text" id="blacklist-search" name="ingredient_name" placeholder="+ Add restriction" autocomplete="off">
                     </form>
                 {% endif %}
 
@@ -100,8 +99,5 @@
 
 
 </body>
-
-
-
 
 

@@ -1,0 +1,68 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(68, 12, 13);
+}
+
+
+.login-main-div{
+    padding: 29vh 8vw;
+    color: rgb(68, 12, 13);
+
+    flex-direction: column; 
+    width: 40vw; 
+    gap: 3vh; 
+    margin: 0vh 30vw;
+    
+}
+
+
+.login-title{
+    margin: 1vh; 
+    text-align: center;
+    font-size: 7vh;
+}
+.login-desc{
+    text-align: center; 
+    margin: 2.5vh 0;
+    font-size: 2.7vh;
+}
+.login-error{
+    color: #c0392b; 
+    font-size: 2vh; 
+    text-align: center; 
+    margin: 2vh 0;
+
+    font-size: 2vh;
+}
+
+.login-card{
+    width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 2vh;
+}
+
+
+.login-box-label{
+    font-size: 2vh; 
+    color: rgb(68, 12, 13);
+}
+
+
+.login-input{
+    
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.5vh;
+}
+.login-button{
+    background-color: #99a146; 
+    color: white; 
+    cursor: pointer; 
+    padding: 1.5vh; 
+    font-size: 2.2vh; 
+    margin-top: 2vh; 
+    text-align: center; 
+    border: none; 
+    width: 100%;
+}

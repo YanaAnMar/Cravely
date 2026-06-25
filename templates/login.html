@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<head>
+    <title> Login </title>
+
+    <link rel = "stylesheet" href = "{% static 'login.css' %}"> </link>
+
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <div class="login-main-div">
+        <p class="login-title"> 
+            Welcome Back 
+        </p>
+        <p class="login-desc">
+            Log in to view your recipe preferences
+        </p>
+
+        {% if form.errors %}
+            <p class="login-error">
+                Invalid username or password. Please try again.
+            </p>
+        {% endif %}
+
+        <form method="POST" class="login-card">
+            {% csrf_token %}
+            
+            <div class="login-input">
+                <label class="login-box-label">Username</label>
+                {{ form.username }}
+            </div>
+
+            <div class="login-input" >
+                <label class="login-box-label">Password</label>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="login-button">
+                Log In
+            </button>
+        </form>
+    </div>
+
+
+</body>
+
+
+
+
+
