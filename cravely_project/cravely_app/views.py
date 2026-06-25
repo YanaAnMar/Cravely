@@ -1,25 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Recipe, RecipeIngredient, Ingredient, Tag
-from django.contrib.auth.models import User
-
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.contrib.auth.models import User
+from .models import Recipe, RecipeIngredient, Ingredient, Tag
 import json
 
 
 # Create your views here.
 
-def homepage(request):
+def homepage(request: HttpRequest) -> HttpResponse:
     recipes = Recipe.objects.all()
     return render(request, '../templates/homepage.html', {'recipes': recipes})
 
-def profile(request, username):
+def profile(request: HttpRequest, username: str) -> HttpResponse:
     user_profile = get_object_or_404(User, username=username)
     return render(request, 'profile.html', {
         'profile_user': user_profile
     })
 
-def recipepage(request, recipe_id):
+def recipepage(request: HttpRequest, recipe_id: int) -> HttpResponse:
     single_recipe = get_object_or_404(Recipe, id=recipe_id)
     steps_list = single_recipe.steps.split('|')
     ingredients_list = RecipeIngredient.objects.filter(recipe=single_recipe)
@@ -33,7 +32,7 @@ def recipepage(request, recipe_id):
 
 
 @login_required
-def toggle_save(request, recipe_id):
+def toggle_save(request: HttpRequest, recipe_id: int) -> HttpResponse:
     if request.method == 'POST':
         recipe = get_object_or_404(Recipe, id=recipe_id)
         if recipe.favorited_by.filter(id=request.user.id).exists():
@@ -46,12 +45,12 @@ def toggle_save(request, recipe_id):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 @login_required
-def saved_recipes(request):
+def saved_recipes(request: HttpRequest) -> HttpResponse:
     saved = request.user.favorite_recipes.all()
     return render(request, '../templates/saved_recipes.html', {'saved': saved})
 
 @login_required
-def add_recipe(request):
+def add_recipe(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         title = request.POST.get('title', '').strip()
         description = request.POST.get('description', '').strip()
@@ -95,7 +94,7 @@ def add_recipe(request):
 
 
 @login_required
-def update_blacklist(request):
+def update_blacklist(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         is_json_request = request.content_type == 'application/json'
 
@@ -140,7 +139,7 @@ def update_blacklist(request):
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
 
 
-def lookup(request):
+def lookup(request: HttpRequest) -> HttpResponse:
     query = request.GET.get('q', '')
     filters = request.GET.getlist('filter')
     fridge = request.GET.getlist('fridge')
