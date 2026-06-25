@@ -1,0 +1,147 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Recipe | Cravely</title>
+    <link rel="stylesheet" href="{% static 'add_recipe.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <div class="add-body">
+        <h1 class="add-title">Add a Recipe</h1>
+
+        <form method="POST" enctype="multipart/form-data" class="recipe-form">
+            {% csrf_token %}
+
+            <div class="form-section">
+                <label class="form-label">Title</label>
+                <input type="text" name="title" class="form-input" placeholder="Recipe name..." required>
+            </div>
+
+            <div class="form-section">
+                <label class="form-label">Description</label>
+                <textarea name="description" class="form-textarea" placeholder="Brief description of your recipe..." required></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-section">
+                    <label class="form-label">Cooking time (minutes)</label>
+                    <input type="number" name="cooking_time" class="form-input form-input-short" min="1" placeholder="30" required>
+                </div>
+                <div class="form-section">
+                    <label class="form-label">Portions</label>
+                    <input type="number" name="portions" class="form-input form-input-short" min="1" placeholder="4" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <label class="form-label">Photo</label>
+                <div class="file-upload-wrapper">
+                    <label class="file-upload-btn" for="recipe-image">Upload photo</label>
+                    <span class="file-name-display" id="file-name-display">No file chosen</span>
+                    <input type="file" name="image" id="recipe-image" accept="image/*" style="display:none" onchange="updateFileName(this)">
+                </div>
+            </div>
+
+            <div class="form-section">
+                <label class="form-label">Tags</label>
+                <div class="tags-grid">
+                    {% for tag in tags %}
+                    <label class="tag-checkbox-label">
+                        <input type="checkbox" name="tags" value="{{ tag.id }}" class="tag-checkbox">
+                        <span class="tag-pill">{{ tag.display_name }}</span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-section">
+                <label class="form-label">Ingredients</label>
+                <div id="ingredients-list">
+                    <div class="ingredient-row">
+                        <input type="text" name="ingredient_quantity" class="form-input ing-qty" placeholder="e.g. 100g">
+                        <input type="text" name="ingredient_name" class="form-input ing-name" placeholder="Ingredient name">
+                        <button type="button" class="remove-row-btn" onclick="removeRow(this)">×</button>
+                    </div>
+                </div>
+                <button type="button" class="add-row-btn" onclick="addIngredient()">+ Add ingredient</button>
+            </div>
+
+            <div class="form-section">
+                <label class="form-label">Steps</label>
+                <div id="steps-list">
+                    <div class="step-row">
+                        <span class="step-num">1</span>
+                        <textarea name="steps" class="step-textarea" placeholder="Describe this step..."></textarea>
+                        <button type="button" class="remove-row-btn" onclick="removeRow(this)">×</button>
+                    </div>
+                </div>
+                <button type="button" class="add-row-btn" onclick="addStep()">+ Add step</button>
+            </div>
+
+            <button type="submit" class="submit-btn">Publish Recipe</button>
+        </form>
+    </div>
+
+    <script>
+        function removeRow(btn) {
+            btn.parentElement.remove();
+            updateStepNumbers();
+        }
+
+        function addIngredient() {
+            var list = document.getElementById('ingredients-list');
+            var row = document.createElement('div');
+            row.className = 'ingredient-row';
+            row.innerHTML =
+                '<input type="text" name="ingredient_quantity" class="form-input ing-qty" placeholder="e.g. 100g">' +
+                '<input type="text" name="ingredient_name" class="form-input ing-name" placeholder="Ingredient name">' +
+                '<button type="button" class="remove-row-btn" onclick="removeRow(this)">×</button>';
+            list.appendChild(row);
+        }
+
+        function addStep() {
+            var list = document.getElementById('steps-list');
+            var num = list.children.length + 1;
+            var row = document.createElement('div');
+            row.className = 'step-row';
+            row.innerHTML =
+                '<span class="step-num">' + num + '</span>' +
+                '<textarea name="steps" class="step-textarea" placeholder="Describe this step..."></textarea>' +
+                '<button type="button" class="remove-row-btn" onclick="removeRow(this)">×</button>';
+            list.appendChild(row);
+        }
+
+        function updateStepNumbers() {
+            var rows = document.querySelectorAll('#steps-list .step-row');
+            rows.forEach(function(row, i) {
+                row.querySelector('.step-num').textContent = i + 1;
+            });
+        }
+
+        function autoResize(el) {
+            el.style.height = 'auto';
+            el.style.height = el.scrollHeight + 'px';
+        }
+
+        document.addEventListener('input', function(e) {
+            if (e.target.tagName === 'TEXTAREA') autoResize(e.target);
+        });
+
+        function updateFileName(input) {
+            var display = document.getElementById('file-name-display');
+            display.textContent = input.files.length > 0 ? input.files[0].name : 'No file chosen';
+        }
+
+        document.querySelectorAll('.tag-checkbox').forEach(function(cb) {
+            cb.addEventListener('change', function() {
+                this.nextElementSibling.classList.toggle('selected', this.checked);
+            });
+        });
+    </script>
+</body>
+</html>

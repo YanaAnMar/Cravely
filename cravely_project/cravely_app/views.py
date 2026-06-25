@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Recipe, RecipeIngredient, Ingredient
+from .models import Recipe, RecipeIngredient, Ingredient, Tag
 from django.contrib.auth.models import User
 
 from django.contrib.auth.decorators import login_required
@@ -50,8 +50,48 @@ def saved_recipes(request):
     saved = request.user.favorite_recipes.all()
     return render(request, '../templates/saved_recipes.html', {'saved': saved})
 
+@login_required
 def add_recipe(request):
-    return render(request, '../templates/add_recipe.html')
+    if request.method == 'POST':
+        title = request.POST.get('title', '').strip()
+        description = request.POST.get('description', '').strip()
+        cooking_time = request.POST.get('cooking_time', 1)
+        portions = request.POST.get('portions', 1)
+        image = request.FILES.get('image')
+
+        steps_str = '|'.join(s.strip() for s in request.POST.getlist('steps') if s.strip())
+
+        recipe = Recipe.objects.create(
+            title=title,
+            description=description,
+            cooking_time=int(cooking_time),
+            portions=int(portions),
+            steps=steps_str,
+            author=request.user,
+        )
+        if image:
+            recipe.image = image
+            recipe.save()
+
+        for tag_id in request.POST.getlist('tags'):
+            try:
+                recipe.tags.add(Tag.objects.get(id=tag_id))
+            except Tag.DoesNotExist:
+                pass
+
+        ing_names = request.POST.getlist('ingredient_name')
+        ing_qtys = request.POST.getlist('ingredient_quantity')
+        for name, qty in zip(ing_names, ing_qtys):
+            name, qty = name.strip(), qty.strip()
+            if name and qty:
+                ingredient = Ingredient.objects.filter(name__iexact=name).first()
+                if not ingredient:
+                    ingredient = Ingredient.objects.create(name=name)
+                RecipeIngredient.objects.create(recipe=recipe, ingredient=ingredient, quantity=qty)
+
+        return redirect('recipepage', recipe_id=recipe.id)
+
+    return render(request, '../templates/add_recipe.html', {'tags': Tag.objects.all()})
 
 
 @login_required

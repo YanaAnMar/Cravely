@@ -1,0 +1,264 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(68, 12, 13);
+    background-color: white;
+    margin: 0;
+}
+
+.add-body {
+    padding: 22vh 10vw 8vh;
+    max-width: 860px;
+}
+
+.add-title {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-style: italic;
+    font-size: 3rem;
+    color: rgb(68, 12, 13);
+    margin: 0 0 4vh 0;
+}
+
+.recipe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.form-label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: rgb(68, 12, 13);
+}
+
+.form-input {
+    height: 5.5vh;
+    border: 2px solid rgb(219, 225, 156);
+    border-radius: 20px;
+    padding: 0 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+    color: rgb(68, 12, 13);
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    border-color: rgb(162, 168, 73);
+}
+
+.form-input-short {
+    width: 160px;
+}
+
+.form-textarea {
+    border: 2px solid rgb(219, 225, 156);
+    border-radius: 20px;
+    padding: 12px 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+    color: rgb(68, 12, 13);
+    outline: none;
+    resize: none;
+    min-height: 10vh;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.form-textarea:focus {
+    border-color: rgb(162, 168, 73);
+}
+
+.form-row {
+    display: flex;
+    gap: 4vw;
+    align-items: flex-start;
+}
+
+.file-upload-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.file-upload-btn {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    color: rgba(162, 168, 73, 0.85);
+    transition: color 0.2s;
+}
+
+.file-upload-btn:hover {
+    color: rgb(100, 110, 30);
+}
+
+.file-name-display {
+    font-size: 0.85rem;
+    color: rgba(68, 12, 13, 0.45);
+    font-style: italic;
+}
+
+/* Tags */
+.tags-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-checkbox-label {
+    cursor: pointer;
+}
+
+.tag-checkbox {
+    display: none;
+}
+
+.tag-pill {
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid rgb(162, 168, 73);
+    border-radius: 20px;
+    padding: 5px 16px;
+    font-size: 0.85rem;
+    color: rgb(68, 12, 13);
+    background-color: white;
+    transition: background-color 0.2s, color 0.2s;
+    user-select: none;
+}
+
+.tag-checkbox-label:hover .tag-pill {
+    background-color: rgb(219, 225, 156);
+}
+
+.tag-pill.selected {
+    background-color: rgb(162, 168, 73);
+    color: white;
+}
+
+/* Ingredients */
+.ingredient-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.ing-qty {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.ing-name {
+    flex: 1;
+}
+
+.remove-row-btn {
+    background: none;
+    border: 2px solid rgb(162, 168, 73);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: rgb(162, 168, 73);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 0.2s, color 0.2s;
+    padding: 0;
+    line-height: 1;
+}
+
+.remove-row-btn:hover {
+    background-color: rgb(162, 168, 73);
+    color: white;
+}
+
+.add-row-btn {
+    background: none;
+    border: 2px solid rgb(162, 168, 73);
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.85rem;
+    color: rgb(162, 168, 73);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    margin-top: 4px;
+}
+
+.add-row-btn:hover {
+    background-color: rgb(162, 168, 73);
+    color: white;
+}
+
+/* Steps */
+.step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.step-num {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: rgb(162, 168, 73);
+    border: 2px solid rgb(219, 225, 156);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 8px;
+}
+
+.step-textarea {
+    flex: 1;
+    border: 2px solid rgb(219, 225, 156);
+    border-radius: 20px;
+    padding: 10px 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+    color: rgb(68, 12, 13);
+    outline: none;
+    resize: none;
+    min-height: 8vh;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.step-textarea:focus {
+    border-color: rgb(162, 168, 73);
+}
+
+/* Submit */
+.submit-btn {
+    background-color: rgb(162, 168, 73);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 42px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.2s;
+    margin-top: 1vh;
+}
+
+.submit-btn:hover {
+    background-color: rgb(130, 136, 55);
+}
