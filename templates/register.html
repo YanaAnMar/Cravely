@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<head>
+    <title> Register </title>
+
+    <link rel = "stylesheet" href = "{% static 'login.css' %}"> </link>
+
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <div class="login-main-div">
+        <p class="login-title"> 
+            Create a profile 
+        </p>
+        <p class="login-desc">
+            and see what Cravely has to offer
+        </p>
+
+        {% if form.errors %}
+            <p class="login-error">
+                Please try again.
+            </p>
+        {% endif %}
+
+        <form method="POST" class="login-card">
+            {% csrf_token %}
+            
+
+            {% comment %} <div class="login-input">
+                <label class="login-box-label">Username</label>
+                {{ form.username }}
+            </div>
+
+            <div class="login-input" >
+                <label class="login-box-label">Password</label>
+                {{ form.password }}
+            </div>
+
+            <button type="submit" class="login-button">
+                Log In
+            </button>
+        </form>
+    </div> {% endcomment %}
+
+
+
+    {% for field in form %}
+                <div style="display: flex; flex-direction: column; gap: 0.5vh;">
+                    <label style="font-weight: bold; color: rgb(68, 12, 13);">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small style="color: #7f8c8d; font-size: 1.4vh;">{{ field.help_text }}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <small class="login-error">{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="login-button">
+                Create Account
+            </button>
+        </form>
+        
+        <p class="login-box-label">
+            Already have an account? <a href="{% url 'login' %}" style="color: #99a146; font-weight: bold; text-decoration: none;">Log In</a>
+        </p>
+    </div>
+
+
+</body>
+
+
+
+
+

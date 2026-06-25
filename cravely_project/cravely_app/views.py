@@ -6,8 +6,6 @@ from .models import Recipe, RecipeIngredient, Ingredient, Tag
 import json
 
 
-# Create your views here.
-
 def homepage(request: HttpRequest) -> HttpResponse:
     recipes = Recipe.objects.all()
     return render(request, '../templates/homepage.html', {'recipes': recipes})
@@ -162,3 +160,20 @@ def lookup(request: HttpRequest) -> HttpResponse:
         'active_filters': filters,
         'fridge': fridge,
     })
+
+
+
+from django.contrib.auth import login as auth_login
+from .forms import UserRegisterForm
+
+def register_page(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save() 
+            auth_login(request, user) 
+            return redirect('homepage')
+    else:
+        form = UserRegisterForm()
+        
+    return render(request, 'register.html', {'form': form})

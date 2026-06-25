@@ -45,9 +45,24 @@
                 <a href="{% url 'profile' username=request.user.username %}">
                     <img class="profile_icon" src="{{ request.user.profile.avatar.url }}">
                 </a>
+
+                <form action="{% url 'logout' %}" method="POST" style="margin: 0;">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; color: rgb(68, 12, 13); cursor: pointer; padding: 0.8vh 0.5vw;">
+                        Log Out
+                    </button>
+                </form>
+
             {% else %}
                 <a href="#">
                     <img class="profile_icon" src="{% static 'assets/profile_icon.png' %}">
+                </a>
+                <a href="{% url 'login' %}" style="text-decoration: none; color: rgb(68, 12, 13); font-size: 2vh; padding-right: 1vw;">
+                    Log In
+                </a>
+                
+                <a href="{% url 'register' %}" style="text-decoration: none; color: rgb(68, 12, 13); font-size: 2vh; padding-right: 1vw:">
+                    Sign Up
                 </a>
             {% endif %}
         </div>
