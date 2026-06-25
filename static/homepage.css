@@ -294,3 +294,17 @@
     z-index: 1;
 }
 
+.add_button {
+    position: fixed;
+    bottom: 4vh;
+    right: 4vh;
+    font-size: 30px;
+    padding: 25px 30px;
+    background: rgb(162, 168, 73);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    z-index: 999;
+    line-height: 1;
+}
+

@@ -1,22 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
+from typing import Any
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=50)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
     @property
-    def display_name(self):
+    def display_name(self) -> str:
         return self.name.replace('_', ' ').title()
     
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=50, unique=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
     
 
@@ -31,8 +32,9 @@ class Recipe(models.Model):
     steps = models.TextField(default="", help_text="Seperate steps with |")
     favorited_by = models.ManyToManyField(User, blank=True, related_name="favorite_recipes")
     image = models.ImageField(upload_to='recipe_photos/', blank=True, null=True)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="created_recipes")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
     
 class RecipeIngredient(models.Model):
@@ -40,7 +42,7 @@ class RecipeIngredient(models.Model):
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     quantity = models.CharField(max_length=40)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.quantity} of {self.ingredient.name} in {self.recipe.title}"
     
 
@@ -49,7 +51,7 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to='profile_photos/', default='profile_photos/default_pfp.png', blank=True)
     blacklist = models.ManyToManyField(Ingredient, blank=True, related_name='blacklisted_by')
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.user.username
     
 
@@ -58,10 +60,10 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 @receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
+def create_user_profile(sender: type, instance: User, created: bool, **kwargs: Any) -> None:
     if created:
         Profile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
+def save_user_profile(sender: type, instance: User, **kwargs: Any) -> None:
     instance.profile.save()

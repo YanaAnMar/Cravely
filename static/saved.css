@@ -1,0 +1,96 @@
+.saved_page {
+    padding-top: 22vh;
+    padding-left: 6vw;
+    padding-right: 6vw;
+    min-height: 100vh;
+}
+
+.saved_heading {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-size: 1.4rem;
+    color: rgb(68, 12, 13);
+    margin-bottom: 4px;
+}
+
+.saved_subheading {
+    font-family: 'Roboto';
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 32px;
+}
+
+.saved_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 960px;
+}
+
+.saved_card {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgb(219, 225, 156);
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.saved_card:hover {
+    border-color: rgb(162, 168, 73);
+    transform: translateY(-3px);
+}
+
+.saved_card_img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.saved_card_img_placeholder {
+    width: 100%;
+    height: 190px;
+    background-color: rgb(219, 225, 156);
+}
+
+.saved_card_body {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+}
+
+.saved_card_title {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: rgb(68, 12, 13);
+    margin: 0;
+}
+
+.saved_card_tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.saved_tag_pill {
+    border: 2px solid rgb(162, 168, 73);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-family: 'Roboto';
+    font-size: 0.8rem;
+    color: rgb(68, 12, 13);
+}
+
+.saved_empty {
+    text-align: center;
+    padding: 80px 0;
+    color: #aaa;
+    font-family: 'Roboto';
+    font-size: 1rem;
+}

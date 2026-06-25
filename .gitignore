@@ -1,0 +1,25 @@
+# Database
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment
+env/
+venv/
+.venv/
+
+# Media uploads
+cravely_project/media/
+
+# Django
+*.log
+local_settings.py
+
+# OS
+.DS_Store
+Thumbs.db

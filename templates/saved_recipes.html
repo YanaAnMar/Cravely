@@ -5,29 +5,42 @@
 <head>
     <title>Saved Recipes - Cravely</title>
     <link rel="stylesheet" href="{% static 'homepage.css' %}">
+    <link rel="stylesheet" href="{% static 'saved.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="header">
-        <div class="header_top">
-            <a href="{% url 'homepage' %}">
-                <img class="small_logo" src="{% static 'assets/cravely_logo.png' %}">
-            </a>
-            <div class="header_right">
-                <a href="{% url 'saved_recipes' %}">
-                    <img class="profile_icon" src="{% static 'assets/save_icon.png' %}">
-                </a>
-                <a href="{% url 'profile' %}">
-                    <img class="profile_icon" src="{% static 'assets/profile_icon.png' %}">
-                </a>
-            </div>
-        </div>
-    </div>
+    {% include 'header.html' %}
 
-    <div class="main">
-        <h1>Saved Recipes</h1>
-        <p>Your saved recipes will appear here.</p>
+    <div class="saved_page">
+        <h2 class="saved_heading">Saved Recipes</h2>
+        <p class="saved_subheading">{{ saved|length }} recipe{{ saved|length|pluralize }} saved</p>
+
+        {% if saved %}
+            <div class="saved_grid">
+                {% for recipe in saved %}
+                <a class="saved_card" href="{% url 'recipepage' recipe.id %}">
+                    {% if recipe.image %}
+                        <img class="saved_card_img" src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                    {% else %}
+                        <div class="saved_card_img_placeholder"></div>
+                    {% endif %}
+                    <div class="saved_card_body">
+                        <p class="saved_card_title">{{ recipe.title }}</p>
+                        <div class="saved_card_tags">
+                            {% for tag in recipe.tags.all %}
+                                <span class="saved_tag_pill">{{ tag.display_name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="saved_empty">
+                <p>You haven't saved any recipes yet.</p>
+            </div>
+        {% endif %}
     </div>
 </body>
 </html>
